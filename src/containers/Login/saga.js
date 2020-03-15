@@ -2,6 +2,7 @@ import {put, call, takeLatest} from 'redux-saga/effects';
 import {SET_SIGN_IN} from './constants';
 import config from '../../config';
 import request from '../../utils/request';
+import jwt from 'jwt-decode';
 
 function* setSignIn({username, password}) {
   const requestURL = `${config.apiBaseURL}token`;
@@ -23,6 +24,10 @@ function* setSignIn({username, password}) {
     }
   } else if (data.access_token) {
     console.log('success 200', data.access_token);
+    const token = data.access_token;
+    const decoded = jwt(token);
+    const userRole = decoded.role;
+    console.log('user role from saga-->', userRole);
   }
 }
 

@@ -4,6 +4,8 @@ import {Image} from 'react-native';
 import {Provider} from 'react-redux';
 import store from '../configureStore';
 import Login from '../containers/Login/components/Login';
+import AppRouter from '../routers';
+import {NavigationContainer} from '@react-navigation/native';
 
 const login = require('../assets/images/login1.png');
 const App = props => {
@@ -19,9 +21,17 @@ const App = props => {
       </View>
     </View>
   );
+  //   const appRouter = true ? <SignIn /> : <AppRouter />;
+  const AuthFlow = () => {
+    return (
+      <NavigationContainer>
+        <AppRouter />
+      </NavigationContainer>
+    );
+  };
   return (
     <Provider store={store}>
-      <SignIn />
+      <AuthFlow />
     </Provider>
   );
 };

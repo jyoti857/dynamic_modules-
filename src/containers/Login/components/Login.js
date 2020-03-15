@@ -21,20 +21,24 @@ const Login = props => {
   return (
     <View style={styles.container}>
       <TextInput
-        label="username"
+        // label="username"
+        placeholder="username"
         value={username}
         onChangeText={setUsername}
         autoCapitalize="none"
+        mode="outlined"
         style={styles.textField}
       />
       <TextInput
-        label="password"
+        // label="password"
+        placeholder="password"
         value={password}
         onChangeText={setPassword}
+        mode="outlined"
         style={styles.textField}
       />
       <Button
-        mode="contained"
+        mode="outlined"
         style={styles.button}
         onPress={() => dispatchSignIn(username, password)}>
         Sign in
@@ -75,10 +79,11 @@ const styles = StyleSheet.create({
     // borderWidth: 10,
     borderTopStartRadius: 20,
     borderTopRightRadius: 20,
+    backgroundColor: 'transparent',
   },
   button: {
     margin: 20,
-    width: 200,
+    width: 300,
   },
 });
 
