@@ -5,7 +5,11 @@ import {View, Text} from 'react-native';
 const Login = props => {
   return (
     <View>
-      <TextInput />
+      <TextInput
+        label="email"
+        // value = {}
+        onChangeText={() => {}}
+      />
     </View>
   );
 };

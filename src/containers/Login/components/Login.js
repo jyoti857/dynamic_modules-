@@ -9,15 +9,24 @@ import {
   setDispatchUserName,
   dispatchSignin,
 } from '../actions';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const Login = props => {
   const {dispatchSignIn, userName} = props;
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const {accessToken} = props;
 
-  //   useEffect(() => {
-  //     console.log('use effect -->', userName);
-  //   });
+  useEffect(() => {
+    const setToken = async () => {
+      if (accessToken !== null && accessToken !== '') {
+        console.log('use effect setToken -->', accessToken);
+        AsyncStorage.setItem('@appusertoken', accessToken);
+        // set token
+      }
+    };
+    setToken();
+  }, [accessToken]);
   return (
     <View style={styles.container}>
       <TextInput
@@ -55,6 +64,7 @@ const Login = props => {
 const mapStateToProps = ({LoginReducer}) => {
   return {
     userName: LoginReducer.username,
+    accessToken: LoginReducer.token,
   };
 };
 const mapDispatchToProps = dispatch => ({

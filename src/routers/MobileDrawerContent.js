@@ -22,8 +22,10 @@ const MobileDrawer = props => {
 
   const getUserData = async () => {
     const userData = await AsyncStorage.getItem('@userdata');
-    if (userData && displayName === null) {
+    console.log('from mobile drawer -->', userData);
+    if (userData) {
       const parsed = JSON.parse(userData);
+      console.log('from mobile drawer parsed -->', parsed);
       setDisplayName(parsed.DisplayName);
       setEmail(parsed.Email);
       setAvatar(parsed.AvatarUrl);
@@ -56,7 +58,7 @@ const MobileDrawer = props => {
         <ScrollView>
           <DrawerItemList {...props} />
         </ScrollView>
-        <Row>
+        <Row onPress={_signoutAsync}>
           <Col style={{width: 'auto'}}>
             {/* <FontAwesome name="sign-out" size={25} color="grey" /> */}
           </Col>
