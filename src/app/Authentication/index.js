@@ -13,6 +13,9 @@ import {
   getUserData,
 } from '../../containers/Login/actions';
 
+// added on 20th march
+import {Provider as AuthProvider} from '../../Contexts/AuthContext';
+
 const Stack = createStackNavigator();
 const Authentication = props => {
   const {setUserAccessToken, accessToken, dispatchGetUserData} = props;
@@ -67,10 +70,10 @@ const Authentication = props => {
     bootstrapAsync();
   }, [accessToken, setUserAccessToken, dispatchGetUserData]);
 
-  //   React.useEffect(() => {
-  //     console.log('Signout useEffect Authentication useReducer');
-  //     dispatch({type: 'SIGN_OUT'});
-  //   }, [accessToken]);
+  React.useEffect(() => {
+    console.log('Signout useEffect Authentication useReducer');
+    dispatch({type: 'SIGN_OUT'});
+  }, [accessToken]);
 
   //   React.useEffect(() => {
   //     // hoping for calling userGetData action here, let's see
@@ -85,14 +88,16 @@ const Authentication = props => {
         style={{width: 900, height: 900, position: 'absolute'}}
       />
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text>fsdfsdf</Text>
+        {/* <Text>fsdfsdf</Text> */}
         <Login />
       </View>
     </View>
   );
   const AppFlow = () => (
     <NavigationContainer>
-      <AppRouter />
+      <AuthProvider>
+        <AppRouter />
+      </AuthProvider>
     </NavigationContainer>
   );
 

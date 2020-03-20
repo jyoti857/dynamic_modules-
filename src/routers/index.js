@@ -38,7 +38,7 @@ const AppRouter = () => {
     };
     bootstrapAsync();
   }, []);
-
+  console.log('roles -> 829*#(*(@', roles);
   return (
     <Drawer.Navigator
       initialRouteName="Conexion Navigator"
@@ -62,6 +62,9 @@ const AppRouter = () => {
         }}>
         {() => <ConexionStack />}
       </Drawer.Screen>
+      {roles.includes('has_expenses_access') ? (
+        <Drawer.Screen name="Expense">{() => <ConexionStack />}</Drawer.Screen>
+      ) : null}
     </Drawer.Navigator>
   );
 };

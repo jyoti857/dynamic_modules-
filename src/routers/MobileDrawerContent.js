@@ -11,6 +11,8 @@ import {Avatar, withTheme, Subheading, Text, Title} from 'react-native-paper';
 import {Row, Col} from 'react-native-easy-grid';
 import AsyncStorage from '@react-native-community/async-storage';
 import {DrawerItemList} from '@react-navigation/drawer';
+// added import on 20th march
+import {Context as authContext} from '../Contexts/AuthContext';
 
 const MobileDrawer = props => {
   const {colors} = props.theme;
@@ -19,6 +21,9 @@ const MobileDrawer = props => {
     'https://img.icons8.com/pastel-glyph/2x/person-male.png',
   );
   const [email, setEmail] = useState(null);
+
+  // added on 20th march for authContext practice on trial
+  const {state, signout} = React.useContext(authContext);
 
   const getUserData = async () => {
     const userData = await AsyncStorage.getItem('@userdata');
@@ -37,6 +42,7 @@ const MobileDrawer = props => {
   });
   const _signoutAsync = async () => {
     await AsyncStorage.clear();
+    signout();
   };
 
   return (
@@ -59,6 +65,7 @@ const MobileDrawer = props => {
           <DrawerItemList {...props} />
         </ScrollView>
         <Row onPress={_signoutAsync}>
+          {/* <Row> */}
           <Col style={{width: 'auto'}}>
             {/* <FontAwesome name="sign-out" size={25} color="grey" /> */}
           </Col>

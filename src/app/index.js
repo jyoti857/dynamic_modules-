@@ -9,30 +9,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import Authentication from './Authentication';
 import StoreWrappedApp from './StoreWrappedApp';
 
-// const login = require('../assets/images/login1.png');
 const App = props => {
-  //   const SignIn = () => (
-  //     <View style={{flex: 1}}>
-  //       <Image
-  //         source={login}
-  //         style={{width: 900, height: 900, position: 'absolute'}}
-  //       />
-  //       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-  //         <Text>fsdfsdf</Text>
-  //         <Login />
-  //       </View>
-  //     </View>
-  //   );
-  //   //   const appRouter = true ? <SignIn /> : <AppRouter />;
-  //   const AuthFlow = () => {
-  //     return true ? (
-  //       <NavigationContainer>
-  //         <AppRouter />
-  //       </NavigationContainer>
-  //     ) : (
-  //       <SignIn />
-  //     );
-  //   };
   return (
     <Provider store={store}>
       <StoreWrappedApp />
