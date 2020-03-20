@@ -37,5 +37,5 @@ const signIn = dispatch => {
 export const {Context, Provider} = CreateDataContext(
   authReducer,
   {signOut, signIn},
-  [{userToken: ''}],
+  {userToken: '', jyoti: 'luckie'},
 );

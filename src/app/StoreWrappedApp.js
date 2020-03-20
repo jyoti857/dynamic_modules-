@@ -3,13 +3,20 @@ import Authentication from './Authentication';
 import {connect} from 'react-redux';
 import {getUserData} from '../containers/Login/actions';
 
+//---20th march
+import {Provider as AuthProvider} from '../Contexts/AuthContext';
+
 const StoreWrappedApp = props => {
   const {dispatchGetUserData} = props;
   useEffect(() => {
     console.log('#@&*@&#*&@#');
     dispatchGetUserData();
   }, [dispatchGetUserData]);
-  return <Authentication />;
+  return (
+    <AuthProvider>
+      <Authentication />
+    </AuthProvider>
+  );
 };
 
 const mapDispatchToProps = dispatch => ({

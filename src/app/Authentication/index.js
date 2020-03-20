@@ -2,6 +2,7 @@ import * as React from 'react';
 import {StatusBar, View, Image, Text} from 'react-native';
 import {connect} from 'react-redux';
 import {compose} from 'redux';
+import _ from 'lodash';
 
 import {createStackNavigator} from '@react-navigation/stack';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -14,74 +15,71 @@ import {
 } from '../../containers/Login/actions';
 
 // added on 20th march
-import {Provider as AuthProvider} from '../../Contexts/AuthContext';
-
+import {Context as authContext} from '../../Contexts/AuthContext';
 const Stack = createStackNavigator();
 const Authentication = props => {
+  //   console.log('from authentication first line ', React.useContext(authContext));
+  const {state, signIn} = React.useContext(authContext);
   const {setUserAccessToken, accessToken, dispatchGetUserData} = props;
-
-  const [state, dispatch] = React.useReducer(
-    (prevState, action) => {
-      switch (action.type) {
-        case 'RESTORE_TOKEN':
-          console.log('from authentication reducer -->', prevState);
-          return {
-            ...prevState,
-            userToken: action.token,
-            isLoading: false,
-          };
-        case 'SIGN_IN':
-          return {
-            ...prevState,
-            userToken: action.token,
-          };
-        case 'SIGN_OUT':
-          return {
-            ...prevState,
-            userToken: null,
-          };
-        default:
-          return null;
-      }
-    },
-    {
-      userToken: null,
-      isLoading: false,
-    },
-  );
-  React.useEffect(() => {
-    const bootstrapAsync = async () => {
-      let token;
-      try {
-        token = await AsyncStorage.getItem('@appusertoken');
-        console.log(
-          'from authentication useEffect token state-->',
-          //   token,
-          //   state.userToken,
-        );
-      } catch (e) {
-        // restoring token failed
-        console.log('catch Authentication useEffect Token');
-      }
-      dispatch({type: 'RESTORE_TOKEN', token});
-      dispatchGetUserData();
-      setUserAccessToken(token);
-    };
-    bootstrapAsync();
-  }, [accessToken, setUserAccessToken, dispatchGetUserData]);
-
-  React.useEffect(() => {
-    console.log('Signout useEffect Authentication useReducer');
-    dispatch({type: 'SIGN_OUT'});
-  }, [accessToken]);
-
+  //------------  start from here ----
+  //   const [state, dispatch] = React.useReducer(
+  //     (prevState, action) => {
+  //       switch (action.type) {
+  //         case 'RESTORE_TOKEN':
+  //           console.log('from authentication reducer -->', prevState);
+  //           return {
+  //             ...prevState,
+  //             userToken: action.token,
+  //             isLoading: false,
+  //           };
+  //         case 'SIGN_IN':
+  //           return {
+  //             ...prevState,
+  //             userToken: action.token,
+  //           };
+  //         case 'SIGN_OUT':
+  //           return {
+  //             ...prevState,
+  //             userToken: null,
+  //           };
+  //         default:
+  //           return null;
+  //       }
+  //     },
+  //     {
+  //       userToken: null,
+  //       isLoading: false,
+  //     },
+  //   );
   //   React.useEffect(() => {
-  //     // hoping for calling userGetData action here, let's see
-  //     dispatchGetUserData();
-  //   }, [dispatchGetUserData]);
+  //     const bootstrapAsync = async () => {
+  //       let token;
+  //       try {
+  //         token = await AsyncStorage.getItem('@appusertoken');
+  //       } catch (e) {
+  //         // restoring token failed
+  //         console.log('catch Authentication useEffect Token');
+  //       }
+  //       dispatch({type: 'RESTORE_TOKEN', token});
+  //       dispatchGetUserData();
+  //       setUserAccessToken(token);
+  //     };
+  //     bootstrapAsync();
+  //   }, [accessToken, setUserAccessToken, dispatchGetUserData]);
+  // ---------------to this commented at a time, so should be uncommented at a time
+  //   React.useEffect(() => {
+  //     console.log('Signout useEffect Authentication useReducer');
+  //     dispatch({type: 'SIGN_OUT'});
+  //   }, [accessToken]);
 
+  //---added new one here
+  React.useEffect(() => {
+    signIn(accessToken);
+    // dispatchGetUserData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [accessToken]);
   const login = require('../../assets/images/login1.png');
-  const SignIn = () => (
+  const SignIn_ = () => (
     <View style={{flex: 1}}>
       <Image
         source={login}
@@ -95,14 +93,12 @@ const Authentication = props => {
   );
   const AppFlow = () => (
     <NavigationContainer>
-      <AuthProvider>
-        <AppRouter />
-      </AuthProvider>
+      <AppRouter />
     </NavigationContainer>
   );
 
-  if (!state.userToken) {
-    return <SignIn />;
+  if (_.isEmpty(state.userToken)) {
+    return <SignIn_ />;
   }
   return <AppFlow />;
 };

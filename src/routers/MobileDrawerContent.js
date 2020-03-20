@@ -23,7 +23,7 @@ const MobileDrawer = props => {
   const [email, setEmail] = useState(null);
 
   // added on 20th march for authContext practice on trial
-  const {state, signout} = React.useContext(authContext);
+  const {state, signOut} = React.useContext(authContext);
 
   const getUserData = async () => {
     const userData = await AsyncStorage.getItem('@userdata');
@@ -38,11 +38,15 @@ const MobileDrawer = props => {
   };
 
   useEffect(() => {
+    console.log(
+      'from mobile drawer useEffect state auth context state -->',
+      state.jyoti,
+    );
     getUserData();
   });
   const _signoutAsync = async () => {
     await AsyncStorage.clear();
-    signout();
+    signOut();
   };
 
   return (
