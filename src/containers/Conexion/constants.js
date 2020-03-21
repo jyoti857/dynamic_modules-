@@ -1,0 +1,7 @@
+export const GET_IND_CONEXIONS = '@DYNAMIC/GET_IND_CONEXIONS';
+export const SET_IND_CONEXIONS = '@DYNAMIC/SET_IND_CONEXIONS';
+
+export const GET_ORG_CONEXIONS = '@DYNAMIC/GET_ORG_CONEXIONS';
+export const SET_ORG_CONEXIONS = '@DYNAMIC/SET_ORG_CONEXIONS';
+
+export const PAGE_CONFIG = {pageNumber: 1, pageSize: 20};

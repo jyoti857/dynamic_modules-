@@ -1,11 +1,14 @@
 import React from 'react';
 import {View, Text} from 'react-native';
+import FABUI from './PrimaryScreen/UIComponents/FAB';
+import PrimaryScreen from './PrimaryScreen';
 
 const Conexion = props => {
   const {} = props;
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Conexion Screen</Text>
+    <View>
+      <PrimaryScreen />
+      <FABUI />
     </View>
   );
 };
