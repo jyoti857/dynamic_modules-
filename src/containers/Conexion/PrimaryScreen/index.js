@@ -13,6 +13,7 @@ import RenderListItem from './ConexionList/RenderListItem';
 import ConexionList from './ConexionList';
 import {INDIVIDUAL} from '../constants';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
+import FABUI from './UIComponents/FAB';
 
 const PrimaryScreen = props => {
   const {
@@ -70,6 +71,7 @@ const PrimaryScreen = props => {
   return (
     <View>
       <ConexionList indSelected={indSelected} />
+      <FABUI handleConexionCreate={createConexionTrigger} />
     </View>
   );
 };

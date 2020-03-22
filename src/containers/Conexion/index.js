@@ -8,7 +8,6 @@ const Conexion = props => {
   return (
     <View>
       <PrimaryScreen />
-      <FABUI />
     </View>
   );
 };

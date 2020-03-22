@@ -1,32 +1,37 @@
 import React, {useState} from 'react';
 import {FAB, Portal, Provider, withTheme} from 'react-native-paper';
-
+import {INDIVIDUAL, ORGANIZATION} from '../../constants';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 const FABUI = props => {
-  const [open, setOpen] = useState(false);
+  const [fabOpen, setFabOpen] = useState(false);
+  const {handleConexionCreate} = props;
+  const {colors} = props.theme;
 
   return (
     <Provider>
       <Portal>
         <FAB.Group
-          open={open}
-          icon={open ? 'account-plus' : 'plus'}
+          open={fabOpen}
+          icon={fabOpen ? 'account-plus' : 'plus'}
           actions={[
             {
               icon: 'account-multiple-plus',
               label: 'Individual',
-              onPress: () => console.log('Pressed star'),
+              onPress: () => handleConexionCreate(true, INDIVIDUAL),
+              style: {backgroundColor: colors.accent, color: '#000'},
             },
             {
               icon: 'office-building',
               label: 'Organization',
-              onPress: () => console.log('Pressed email'),
+              onPress: () => handleConexionCreate(true, ORGANIZATION),
+              style: {backgroundColor: colors.accent, color: '#000'},
             },
           ]}
-          onStateChange={({open}) => setOpen(open)}
+          onStateChange={({open}) => setFabOpen(open)}
         />
       </Portal>
     </Provider>
   );
 };
 
-export default FABUI;
+export default withTheme(FABUI);
