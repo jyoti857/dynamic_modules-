@@ -1,5 +1,9 @@
 import produce from 'immer';
-import {SET_IND_CONEXIONS, SET_ORG_CONEXIONS} from './constants';
+import {
+  SET_IND_CONEXIONS,
+  SET_ORG_CONEXIONS,
+  SET_INDIVIDUAL_MODAL,
+} from './constants';
 
 export const conexionInitialState = {
   individualConexions: [],
@@ -8,6 +12,7 @@ export const conexionInitialState = {
     data: {},
     types: '',
   },
+  conexionModal: false,
 };
 
 const conexionStore = (state = conexionInitialState, action) =>
@@ -41,6 +46,10 @@ const conexionStore = (state = conexionInitialState, action) =>
             draftState.organizationConexions = obj;
           }
         }
+        break;
+      }
+      case SET_INDIVIDUAL_MODAL: {
+        draftState.conexionModal = action.visibility;
         break;
       }
       default:

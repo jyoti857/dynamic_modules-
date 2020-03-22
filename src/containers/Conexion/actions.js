@@ -3,6 +3,7 @@ import {
   SET_IND_CONEXIONS,
   GET_ORG_CONEXIONS,
   SET_ORG_CONEXIONS,
+  SET_INDIVIDUAL_MODAL,
 } from './constants';
 
 export const getIndConexions = initialPage => {
@@ -30,5 +31,12 @@ export const saveOrgConexions = orgConexions => {
   return {
     type: SET_ORG_CONEXIONS,
     orgConexions,
+  };
+};
+
+export const setIndividualModalVisibility = visibility => {
+  return {
+    type: SET_INDIVIDUAL_MODAL,
+    visibility,
   };
 };

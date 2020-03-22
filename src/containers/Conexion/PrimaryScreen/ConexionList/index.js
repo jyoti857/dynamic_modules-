@@ -89,7 +89,7 @@ class ConexionList extends PureComponent {
   };
   getRenderPart = () => {
     const {getIndConexionLists, getOrgConexionLists, indSelected} = this.props;
-    if (false) {
+    if (indSelected) {
       return (
         <View>
           <FlatList
