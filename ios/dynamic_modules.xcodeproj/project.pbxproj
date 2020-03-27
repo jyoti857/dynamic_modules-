@@ -194,7 +194,6 @@
 				942061E195E3A2304F742B45 /* Pods-dynamic_modulesTests.debug.xcconfig */,
 				696E392780E5CC76B0786779 /* Pods-dynamic_modulesTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -309,6 +308,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);

@@ -3,6 +3,9 @@ import {
   SET_IND_CONEXIONS,
   SET_ORG_CONEXIONS,
   SET_INDIVIDUAL_MODAL,
+  SAVE_DD_METADATA,
+  SAVE_ORG_DD_VALUE,
+  SET_EDIT_CONEXION,
 } from './constants';
 
 export const conexionInitialState = {
@@ -13,6 +16,9 @@ export const conexionInitialState = {
     types: '',
   },
   conexionModal: false,
+  metaData: {},
+  orgDropdown: [],
+  editConexion: false,
 };
 
 const conexionStore = (state = conexionInitialState, action) =>
@@ -20,9 +26,9 @@ const conexionStore = (state = conexionInitialState, action) =>
     const draftState = draft;
     switch (action.type) {
       case SET_IND_CONEXIONS: {
-        console.log(
-          'from Conexions reducer----------------------------------------------------------',
-        );
+        // console.log(
+        //   'from Conexions reducer----------------------------------------------------------',
+        // );
         if (action.indConexions.data && action.indConexions.data.length > 0) {
           if (action.indConexions.page === 1) {
             draftState.individualConexions = [];
@@ -50,6 +56,18 @@ const conexionStore = (state = conexionInitialState, action) =>
       }
       case SET_INDIVIDUAL_MODAL: {
         draftState.conexionModal = action.visibility;
+        break;
+      }
+      case SAVE_DD_METADATA: {
+        draftState.metaData = action.metaData;
+        break;
+      }
+      case SAVE_ORG_DD_VALUE: {
+        draftState.orgDropdown = action.orgDDValues;
+        break;
+      }
+      case SET_EDIT_CONEXION: {
+        draftState.editConexion = action.value;
         break;
       }
       default:

@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Dimensions,
   StatusBar,
+  Text,
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import LinearGradient from 'react-native-linear-gradient';
@@ -14,6 +15,9 @@ import * as colors from '../../utils/colorConstants';
 import {LINEAR_START, LINEAR_END} from '../../utils/valueConstants';
 import {BackgroundStyle} from '../../globalstyles/styles';
 import {Col, Row} from 'react-native-easy-grid';
+import Feather from 'react-native-vector-icons/FontAwesome';
+import Details from '../../containers/Conexion/PrimaryScreen/CreateIndividual/Details';
+import IndividualConexionForm from '../../containers/Conexion/PrimaryScreen/CreateIndividual/IndividualConexionForm';
 
 const {height} = Dimensions.get('window');
 
@@ -69,12 +73,17 @@ const FullPageModal = props => {
           <LinearGradient
             start={LINEAR_START}
             end={LINEAR_END}
-            colors={colors.DEAFULT_HEADER}
-            //  style = {[styles.titleView, getS]}
-          >
+            colors={['#6a11cb', '#2575fc']}
+            style={[styles.titleView, getStatusBarStyle()]}>
             <Row>
               <Col>
-                <IconButton icon={() => {}} color="#FFF" onPress={() => {}} />
+                <IconButton
+                  icon={() => (
+                    <Feather name="times-circle" color="#fff" size={30} bold />
+                  )}
+                  color="green"
+                  onPress={closeModal}
+                />
               </Col>
               <Col>
                 {!isTablet ? (

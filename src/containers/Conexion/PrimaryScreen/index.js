@@ -4,6 +4,7 @@ import {
   getIndConexions,
   getOrgConexions,
   setIndividualModalVisibility,
+  getMetaData,
 } from '../actions';
 import {createStructuredSelector} from 'reselect';
 import {selectIndConexions} from '../selectors';
@@ -14,6 +15,7 @@ import ConexionList from './ConexionList';
 import {INDIVIDUAL} from '../constants';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import FABUI from './UIComponents/FAB';
+import CreateIndividual from './CreateIndividual';
 
 const PrimaryScreen = props => {
   const {
@@ -21,6 +23,7 @@ const PrimaryScreen = props => {
     getIndConexionLists,
     fetchOrgConexions,
     dispatchConexionModalState,
+    fetchDropDownValues,
   } = props;
   const [indSelected, setIndSelected] = useState(true);
   const [orgSelected, setOrgSelected] = useState(false);
@@ -37,7 +40,8 @@ const PrimaryScreen = props => {
     };
     fetchIndConexions(initialPage);
     fetchOrgConexions(initialPage);
-    console.log('iier920i209i39()$@)$(@)($)', getIndConexionLists);
+    fetchDropDownValues();
+    // console.log('iier920i209i39()$@)$(@)($)', getIndConexionLists);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -70,6 +74,7 @@ const PrimaryScreen = props => {
 
   return (
     <View>
+      <CreateIndividual />
       <ConexionList indSelected={indSelected} />
       <FABUI handleConexionCreate={createConexionTrigger} />
     </View>
@@ -80,7 +85,7 @@ const PrimaryScreen = props => {
 //   getIndConexionLists: selectIndConexions(),
 // });
 const mapStateToProps = state => {
-  console.log('sdsd', state.ConexionReducer);
+  //   console.log('sdsd', state.ConexionReducer);
   return {
     getIndConexionLists: state.ConexionReducer.individualConexions,
     getOrgConexionLists: state.ConexionReducer.organizationConexions,
@@ -91,6 +96,7 @@ const mapDispatchToProps = dispatch => ({
   fetchOrgConexions: initialPage => dispatch(getOrgConexions(initialPage)),
   dispatchConexionModalState: modalState =>
     dispatch(setIndividualModalVisibility(modalState)),
+  fetchDropDownValues: () => dispatch(getMetaData()),
 });
 
 export default connect(

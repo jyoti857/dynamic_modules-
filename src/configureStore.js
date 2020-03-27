@@ -5,11 +5,13 @@ import ConexionReducer from '../src/containers/Conexion/reducer';
 import createSagaMiddleware from 'redux-saga';
 import loginSaga from '../src/containers/Login/saga';
 import ConexionSaga from './containers/Conexion/saga';
+import {reducer as formReducer} from 'redux-form';
 const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = combineReducers({
   LoginReducer,
   ConexionReducer,
+  form: formReducer,
 });
 
 function* rootSaga() {

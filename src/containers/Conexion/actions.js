@@ -4,6 +4,11 @@ import {
   GET_ORG_CONEXIONS,
   SET_ORG_CONEXIONS,
   SET_INDIVIDUAL_MODAL,
+  FETCH_DD_METADATA,
+  SAVE_DD_METADATA,
+  GET_ORG_DD_VALUE,
+  SAVE_ORG_DD_VALUE,
+  SET_EDIT_CONEXION,
 } from './constants';
 
 export const getIndConexions = initialPage => {
@@ -40,3 +45,25 @@ export const setIndividualModalVisibility = visibility => {
     visibility,
   };
 };
+
+export const getMetaData = () => ({
+  type: FETCH_DD_METADATA,
+});
+
+export const saveMetaData = metaData => ({
+  type: SAVE_DD_METADATA,
+  metaData,
+});
+
+export const getOrgDDList = () => ({
+  type: GET_ORG_DD_VALUE,
+});
+export const saveOrgDDList = orgDDValues => ({
+  type: SAVE_ORG_DD_VALUE,
+  orgDDValues,
+});
+
+export const setEditConexion = value => ({
+  type: SET_EDIT_CONEXION,
+  value,
+});
