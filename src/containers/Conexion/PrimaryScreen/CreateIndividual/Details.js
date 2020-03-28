@@ -13,17 +13,7 @@ import _ from 'lodash';
 const {width, height} = Dimensions.get('window');
 const Details = props => {
   const {metaData, organization, editConexion, orgId} = props;
-  const [title, setTitle] = useState([
-    {
-      value: 'Banana',
-    },
-    {
-      value: 'Mango',
-    },
-    {
-      value: 'Pear',
-    },
-  ]);
+  const [title, setTitle] = useState([]);
   const [suffix, setSuffix] = useState([]);
 
   useEffect(() => {
@@ -40,8 +30,8 @@ const Details = props => {
       metaData.suffix.forEach(data => {
         mappedSuffix.push({label: data.Text, value: data.Value});
       });
-      console.log('metadata#*@___>', mappedTitle);
-      //   setTitle(mappedTitle);
+      // console.log('metadata#*@___>', mappedTitle);
+      setTitle(mappedTitle);
       setSuffix(mappedSuffix);
     }
   }, [metaData, props]);
@@ -70,31 +60,16 @@ const Details = props => {
               <TextInput label="Job Title" name="ind_job_title" />
             </Col>
           </Row>
-          <Row style={{marginVertical: 60, padding: -10}}>
+          <Row style={{marginVertical: 60}}>
             <Col>
-              <Dropdown
-                label="Title"
-                name="ind_title"
-                data={[
-                  {
-                    value: 'Banana',
-                  },
-                  {
-                    value: 'Mango',
-                  },
-                  {
-                    value: 'Pear',
-                  },
-                ]}
-                // data={title}
-              />
+              <Dropdown label="Title" name="ind_title" data={title} />
             </Col>
             <Col>
               <Dropdown label="Suffix" name="ind_suffix" data={suffix} />
             </Col>
           </Row>
           <Row style={{marginVertical: 60}}>
-            {/* <Col>
+            <Col>
               <Dropdown
                 label="select organization"
                 name="ind_select_organization"
@@ -102,10 +77,10 @@ const Details = props => {
                 disabled={!!orgId}
                 defaultValue={orgId}
               />
-            </Col> */}
-            <Col>
-              <SimpleDropdown />
             </Col>
+            {/* <Col>
+              <SimpleDropdown />
+            </Col> */}
             <Col>
               <Dropdown
                 label="Staus"

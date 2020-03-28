@@ -17,6 +17,7 @@ class RFDropdown extends React.Component {
       input,
       label,
       data,
+      disabled,
       meta: {error, touched},
       ...inputProps
     } = this.props;
@@ -28,13 +29,20 @@ class RFDropdown extends React.Component {
       <View style={styles.parentView}>
         <MaterialDropdown
           {...inputProps}
+          itemTextStyle={styles.picker}
           label={required ? `${label}*` : label}
-          data={data}
           style={styles.dropDown}
-          value={input.value}
-          onChangeText={this.onChangeHandler}
-          error={hasError ? `${label} is required` : null}
+          data={data}
+          labelTextStyle={styles.label}
+          titleTextStyle={styles.font}
           labelFontSize={12}
+          value={input.value}
+          onChangeText={this.onchangeHandler}
+          onBlur={input.onBlur}
+          error={hasError ? `${label} is required` : null}
+          textColor="rgba(0, 0, 0, 0.8)"
+          baseColor="rgba(0, 0, 0, 0.5)"
+          disabled={disabled}
         />
       </View>
     );
