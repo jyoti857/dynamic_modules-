@@ -13,17 +13,7 @@ import _ from 'lodash';
 const {width, height} = Dimensions.get('window');
 const Details = props => {
   const {metaData, organization, editConexion, orgId} = props;
-  const [title, setTitle] = useState([
-    {
-      value: 'Banana',
-    },
-    {
-      value: 'Mango',
-    },
-    {
-      value: 'Pear',
-    },
-  ]);
+  const [title, setTitle] = useState([]);
   const [suffix, setSuffix] = useState([]);
 
   useEffect(() => {
@@ -40,8 +30,8 @@ const Details = props => {
       metaData.suffix.forEach(data => {
         mappedSuffix.push({label: data.Text, value: data.Value});
       });
-      console.log('metadata#*@___>', mappedTitle);
-      //   setTitle(mappedTitle);
+      // console.log('metadata#*@___>', mappedTitle);
+      setTitle(mappedTitle);
       setSuffix(mappedSuffix);
     }
   }, [metaData, props]);
@@ -88,6 +78,9 @@ const Details = props => {
                 defaultValue={orgId}
               />
             </Col>
+            {/* <Col>
+              <SimpleDropdown />
+            </Col> */}
             <Col>
               <Dropdown
                 label="Staus"
