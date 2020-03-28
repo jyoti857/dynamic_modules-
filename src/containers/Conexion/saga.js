@@ -5,6 +5,7 @@ import {
   FETCH_DD_METADATA,
   METADATA_VARIABLE,
   GET_ORG_DD_VALUE,
+  GET_USER_DD_VALUE,
 } from './constants';
 import config from '../../config';
 import request from '../../utils/request';
@@ -13,6 +14,7 @@ import {
   saveOrgConexions,
   saveMetaData,
   saveOrgDDList,
+  saveUserDDList,
 } from './actions';
 
 function* getIndividualConexionAPI({initialPage}) {
@@ -90,10 +92,34 @@ function* getOrgDDValuesAPI() {
     console.log('problem fetching from org dropdown');
   }
 }
+function* getUserDDValuesAPI() {
+  const requestURL = `${config.apiURL}UserDropdownValues`;
+  const ddList = [];
+  const options = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'applicaton/json',
+    },
+  };
+  const response = yield call(request, requestURL, options);
+  if (response.success) {
+    response.data.forEach(dd => {
+      ddList.push({
+        key: dd.value.toString(),
+        value: dd.value,
+        label: dd.label,
+      });
+    });
+    yield put(saveUserDDList(ddList));
+  } else {
+    console.log('problem fetching User drop down');
+  }
+}
 
 export default function* ConexionSaga() {
   yield takeLatest(GET_IND_CONEXIONS, getIndividualConexionAPI);
   yield takeLatest(GET_ORG_CONEXIONS, getOrganizationConexionAPI);
   yield takeLatest(FETCH_DD_METADATA, getConexionMetaDataAPI);
   yield takeLatest(GET_ORG_DD_VALUE, getOrgDDValuesAPI);
+  yield takeLatest(GET_USER_DD_VALUE, getUserDDValuesAPI);
 }

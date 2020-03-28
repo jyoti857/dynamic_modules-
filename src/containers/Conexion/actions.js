@@ -9,6 +9,8 @@ import {
   GET_ORG_DD_VALUE,
   SAVE_ORG_DD_VALUE,
   SET_EDIT_CONEXION,
+  GET_USER_DD_VALUE,
+  SAVE_USER_DD_VALUE,
 } from './constants';
 
 export const getIndConexions = initialPage => {
@@ -61,6 +63,13 @@ export const getOrgDDList = () => ({
 export const saveOrgDDList = orgDDValues => ({
   type: SAVE_ORG_DD_VALUE,
   orgDDValues,
+});
+export const getUserDDList = () => ({
+  type: GET_USER_DD_VALUE,
+});
+export const saveUserDDList = userDDValues => ({
+  type: SAVE_USER_DD_VALUE,
+  userDDValues,
 });
 
 export const setEditConexion = value => ({

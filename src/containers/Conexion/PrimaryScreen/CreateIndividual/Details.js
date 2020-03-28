@@ -79,9 +79,6 @@ const Details = props => {
                 defaultValue={orgId}
               />
             </Col>
-            {/* <Col>
-              <SimpleDropdown />
-            </Col> */}
             <Col>
               <Dropdown
                 label="Staus"
