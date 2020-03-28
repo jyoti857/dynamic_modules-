@@ -39,6 +39,7 @@ const RFTextInput = props => {
         disabled={disabled}
         multiline={multiline}
         maxLength={2000}
+        mode="outlined"
       />
       {required && hasError ? (
         <HelperText type="error" visible={hasError}>

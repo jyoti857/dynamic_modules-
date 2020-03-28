@@ -6,9 +6,10 @@ import Communication from './Communication';
 
 const IndividualConexionForm = props => {
   return (
-    // <View style={{marginBottom: 300}}>
-    <Details />
-    // </View>
+    <View>
+      <Details />
+      <Communication />
+    </View>
   );
 };
 

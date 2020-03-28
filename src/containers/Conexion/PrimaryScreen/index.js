@@ -5,6 +5,7 @@ import {
   getOrgConexions,
   setIndividualModalVisibility,
   getMetaData,
+  getOrgDDList,
 } from '../actions';
 import {createStructuredSelector} from 'reselect';
 import {selectIndConexions} from '../selectors';
@@ -16,6 +17,7 @@ import {INDIVIDUAL} from '../constants';
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import FABUI from './UIComponents/FAB';
 import CreateIndividual from './CreateIndividual';
+import SafeAreaView from 'react-native-safe-area-view';
 
 const PrimaryScreen = props => {
   const {
@@ -24,6 +26,7 @@ const PrimaryScreen = props => {
     fetchOrgConexions,
     dispatchConexionModalState,
     fetchDropDownValues,
+    dispatchGetOrgDDList,
   } = props;
   const [indSelected, setIndSelected] = useState(true);
   const [orgSelected, setOrgSelected] = useState(false);
@@ -41,6 +44,7 @@ const PrimaryScreen = props => {
     fetchIndConexions(initialPage);
     fetchOrgConexions(initialPage);
     fetchDropDownValues();
+    dispatchGetOrgDDList();
     // console.log('iier920i209i39()$@)$(@)($)', getIndConexionLists);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -73,11 +77,11 @@ const PrimaryScreen = props => {
   };
 
   return (
-    <View>
+    <SafeAreaView forceInset={{bottom: 'never'}}>
       <CreateIndividual />
       <ConexionList indSelected={indSelected} />
       <FABUI handleConexionCreate={createConexionTrigger} />
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -97,6 +101,7 @@ const mapDispatchToProps = dispatch => ({
   dispatchConexionModalState: modalState =>
     dispatch(setIndividualModalVisibility(modalState)),
   fetchDropDownValues: () => dispatch(getMetaData()),
+  dispatchGetOrgDDList: () => dispatch(getOrgDDList()),
 });
 
 export default connect(

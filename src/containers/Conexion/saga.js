@@ -4,10 +4,16 @@ import {
   GET_ORG_CONEXIONS,
   FETCH_DD_METADATA,
   METADATA_VARIABLE,
+  GET_ORG_DD_VALUE,
 } from './constants';
 import config from '../../config';
 import request from '../../utils/request';
-import {saveIndConexions, saveOrgConexions, saveMetaData} from './actions';
+import {
+  saveIndConexions,
+  saveOrgConexions,
+  saveMetaData,
+  saveOrgDDList,
+} from './actions';
 
 function* getIndividualConexionAPI({initialPage}) {
   //   console.log('EIE@IKJE@K from saga _----------.');
@@ -68,9 +74,26 @@ function* getConexionMetaDataAPI() {
     // toast message and loader will be implemented
   }
 }
+function* getOrgDDValuesAPI() {
+  const requestURL = `${config.apiURL}OrganizationConexionDropdown`;
+  const options = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+  const response = yield call(request, requestURL, options);
+  if (response.success) {
+    yield put(saveOrgDDList(response.data));
+    console.log('from organization dropdown saga -->', response.data);
+  } else {
+    console.log('problem fetching from org dropdown');
+  }
+}
 
 export default function* ConexionSaga() {
   yield takeLatest(GET_IND_CONEXIONS, getIndividualConexionAPI);
   yield takeLatest(GET_ORG_CONEXIONS, getOrganizationConexionAPI);
   yield takeLatest(FETCH_DD_METADATA, getConexionMetaDataAPI);
+  yield takeLatest(GET_ORG_DD_VALUE, getOrgDDValuesAPI);
 }

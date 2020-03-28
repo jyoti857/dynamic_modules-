@@ -30,21 +30,22 @@ const Details = props => {
       metaData.suffix.forEach(data => {
         mappedSuffix.push({label: data.Text, value: data.Value});
       });
-      // console.log('metadata#*@___>', mappedTitle);
+      console.log('metadata#*@___>', organization);
       setTitle(mappedTitle);
       setSuffix(mappedSuffix);
     }
-  }, [metaData, props]);
+  }, [metaData, organization, props]);
   console.log('title --->', title);
   return (
     <Card
       elevation={4}
-      style={
-        (CardStyle.root, {width: width - 60, height: height - 300, margin: 30})
-      }>
+      // style={
+      //   (CardStyle.root, {width: width - 60, height: height - 300, margin: 30})
+      // }
+    >
       <Card.Content>
         <Grid>
-          <Row style={{marginVertical: 60}}>
+          <Row>
             <Col>
               <TextInput name="ind_first_name" label="First Name" required />
             </Col>
@@ -52,7 +53,7 @@ const Details = props => {
               <TextInput label="Middle Name" name="ind_middle_name" />
             </Col>
           </Row>
-          <Row style={{marginVertical: 60}}>
+          <Row>
             <Col>
               <TextInput label="Last Name" name="ind_last_name" required />
             </Col>
@@ -60,7 +61,7 @@ const Details = props => {
               <TextInput label="Job Title" name="ind_job_title" />
             </Col>
           </Row>
-          <Row style={{marginVertical: 60}}>
+          <Row>
             <Col>
               <Dropdown label="Title" name="ind_title" data={title} />
             </Col>
@@ -68,7 +69,7 @@ const Details = props => {
               <Dropdown label="Suffix" name="ind_suffix" data={suffix} />
             </Col>
           </Row>
-          <Row style={{marginVertical: 60}}>
+          <Row>
             <Col>
               <Dropdown
                 label="select organization"

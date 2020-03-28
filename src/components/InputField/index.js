@@ -36,3 +36,27 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
 });
+
+export const NumberInput = props => {
+  const {
+    label,
+    name,
+    required,
+    helperText,
+    onChangeTrigger,
+    defaultValue,
+    disabled,
+  } = props;
+  return (
+    <Field
+      label={label}
+      name={name}
+      component={RFNumberInput}
+      required={required}
+      helperText={helperText}
+      onChangeTrigger={onChangeTrigger}
+      defaultValue={defaultValue}
+      disabled={disabled}
+    />
+  );
+};

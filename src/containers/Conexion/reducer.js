@@ -70,6 +70,10 @@ const conexionStore = (state = conexionInitialState, action) =>
         draftState.editConexion = action.value;
         break;
       }
+      case SAVE_ORG_DD_VALUE: {
+        draftState.organizationConexions = action.orgDDValues;
+        break;
+      }
       default:
         return state;
     }
