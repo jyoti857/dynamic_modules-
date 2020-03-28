@@ -70,31 +70,16 @@ const Details = props => {
               <TextInput label="Job Title" name="ind_job_title" />
             </Col>
           </Row>
-          <Row style={{marginVertical: 60, padding: -10}}>
+          <Row style={{marginVertical: 60}}>
             <Col>
-              <Dropdown
-                label="Title"
-                name="ind_title"
-                data={[
-                  {
-                    value: 'Banana',
-                  },
-                  {
-                    value: 'Mango',
-                  },
-                  {
-                    value: 'Pear',
-                  },
-                ]}
-                // data={title}
-              />
+              <Dropdown label="Title" name="ind_title" data={title} />
             </Col>
             <Col>
               <Dropdown label="Suffix" name="ind_suffix" data={suffix} />
             </Col>
           </Row>
           <Row style={{marginVertical: 60}}>
-            {/* <Col>
+            <Col>
               <Dropdown
                 label="select organization"
                 name="ind_select_organization"
@@ -102,9 +87,6 @@ const Details = props => {
                 disabled={!!orgId}
                 defaultValue={orgId}
               />
-            </Col> */}
-            <Col>
-              <SimpleDropdown />
             </Col>
             <Col>
               <Dropdown
