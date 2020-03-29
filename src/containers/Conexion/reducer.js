@@ -30,9 +30,6 @@ const conexionStore = (state = conexionInitialState, action) =>
     const draftState = draft;
     switch (action.type) {
       case SET_IND_CONEXIONS: {
-        // console.log(
-        //   'from Conexions reducer----------------------------------------------------------',
-        // );
         if (action.indConexions.data && action.indConexions.data.length > 0) {
           if (action.indConexions.page === 1) {
             draftState.individualConexions = [];

@@ -10,7 +10,7 @@ import {STATUS} from '../../constants';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 
-const {width, height} = Dimensions.get('window');
+// const {width, height} = Dimensions.get('window');
 const Details = props => {
   const {metaData, organization, editConexion, orgId} = props;
   const [title, setTitle] = useState([]);
@@ -30,19 +30,12 @@ const Details = props => {
       metaData.suffix.forEach(data => {
         mappedSuffix.push({label: data.Text, value: data.Value});
       });
-      console.log('metadata#*@___>', organization);
       setTitle(mappedTitle);
       setSuffix(mappedSuffix);
     }
   }, [metaData, organization, props]);
-  console.log('title --->', title);
   return (
-    <Card
-      elevation={4}
-      // style={
-      //   (CardStyle.root, {width: width - 60, height: height - 300, margin: 30})
-      // }
-    >
+    <Card elevation={4}>
       <Card.Content>
         <Grid>
           <Row>
@@ -75,7 +68,7 @@ const Details = props => {
                 label="select organization"
                 name="ind_select_organization"
                 data={organization}
-                disabled={!!orgId}
+                // disabled={!!orgId}
                 defaultValue={orgId}
               />
             </Col>

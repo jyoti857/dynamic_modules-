@@ -29,7 +29,7 @@ class RFDropdown extends React.Component {
       <View style={styles.parentView}>
         <MaterialDropdown
           {...inputProps}
-          itemTextStyle={styles.picker}
+          // itemTextStyle={styles.picker}
           label={required ? `${label}*` : label}
           style={styles.dropDown}
           data={data}
@@ -37,7 +37,7 @@ class RFDropdown extends React.Component {
           // titleTextStyle={styles.font}
           labelFontSize={12}
           value={input.value}
-          onChangeText={this.onchangeHandler}
+          onChangeText={this.onChangeHandler}
           onBlur={input.onBlur}
           error={hasError ? `${label} is required` : null}
           textColor="rgba(0, 0, 0, 0.8)"

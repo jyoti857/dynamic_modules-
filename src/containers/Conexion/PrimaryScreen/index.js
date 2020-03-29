@@ -89,7 +89,6 @@ const PrimaryScreen = props => {
 //   getIndConexionLists: selectIndConexions(),
 // });
 const mapStateToProps = state => {
-  //   console.log('sdsd', state.ConexionReducer);
   return {
     getIndConexionLists: state.ConexionReducer.individualConexions,
     getOrgConexionLists: state.ConexionReducer.organizationConexions,

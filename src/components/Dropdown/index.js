@@ -11,7 +11,7 @@ const Dropdown = props => {
       data={data}
       component={RFDropdown}
       required={required}
-      disabled={disabled}
+      // disabled={disabled}
       onChangeTrigger={onChangeTrigger}
     />
   );

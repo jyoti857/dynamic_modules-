@@ -2,10 +2,17 @@ import React from 'react';
 import IndividualConexionForm from './IndividualConexionForm';
 import {reduxForm} from 'redux-form';
 import FullPageModal from '../../../../components/FullPageModal';
-import {INDIVIDUAL} from '../../constants';
+import {INDIVIDUAL, CREATE_CONEXION_FORM} from '../../constants';
 import {IconButton} from 'react-native-paper';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {setIndividualDetails, dispatchCreateIndividual} from '../../actions';
+import {
+  setIndividualDetails,
+  dispatchCreateIndividual,
+  getUserDDList,
+  setEditConexion,
+  setIndividualModalVisibility,
+  resetForm,
+} from '../../actions';
 import {connect} from 'react-redux';
 import {compose} from 'redux';
 
@@ -18,19 +25,29 @@ const CreateIndividual = props => {
     handleSubmit,
     setIndividualDetails_,
     createIndividual,
+    dispatchGetUserDDList,
+    dispatchSetEditConexion,
+    dispatchConexionModalState,
+    dispatchResetForm,
+    modalState,
   } = props;
-  const _closeModal = () => {};
+  const _closeModal = () => {
+    dispatchSetEditConexion(false);
+    dispatchConexionModalState(false);
+    dispatchResetForm();
+  };
   const onCreateConexion = values => {
     const valuesForm = JSON.stringify(values, null, 2);
     const objForm = JSON.parse(valuesForm);
     console.log('from create individual conexion handle submit --->', objForm);
     setIndividualDetails_(objForm);
     createIndividual();
+    dispatchGetUserDDList();
   };
   return (
     <FullPageModal
-      visible={true}
-      handleModalVisible={false}
+      visible={modalState}
+      handleModalVisible={_closeModal}
       modalHeaderText={
         conexionType === INDIVIDUAL
           ? 'Create Individual'
@@ -50,17 +67,26 @@ const CreateIndividual = props => {
     </FullPageModal>
   );
 };
-
+const mapStateToProps = ({ConexionReducer}) => {
+  return {
+    modalState: ConexionReducer.conexionModal,
+  };
+};
 const mapDispatchToProps = dispatch => ({
   setIndividualDetails_: value => dispatch(setIndividualDetails(value)),
   createIndividual: () => dispatch(dispatchCreateIndividual()),
+  dispatchGetUserDDList: () => dispatch(getUserDDList()),
+  dispatchSetEditConexion: value => dispatch(setEditConexion(value)),
+  dispatchConexionModalState: visibility =>
+    dispatch(setIndividualModalVisibility(visibility)),
+  dispatchResetForm: () => dispatch(resetForm(CREATE_CONEXION_FORM)),
 });
 
 const ReduxForm = reduxForm({
   form: 'CREATE_INDIVIDUAL',
 });
 const withConnect = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 );
 export default compose(

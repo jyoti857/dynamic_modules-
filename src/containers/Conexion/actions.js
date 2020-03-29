@@ -1,3 +1,4 @@
+import {reset} from 'redux-form';
 import {
   GET_IND_CONEXIONS,
   SET_IND_CONEXIONS,
@@ -87,3 +88,9 @@ export const setIndividualDetails = value => ({
 export const dispatchCreateIndividual = () => ({
   type: CREATE_INDIVIDUAL,
 });
+
+export const setEditConexionValue = value => ({
+  type: value,
+});
+
+export const resetForm = formName => reset(formName);

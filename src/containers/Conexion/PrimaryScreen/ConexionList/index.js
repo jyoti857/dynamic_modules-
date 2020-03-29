@@ -147,7 +147,7 @@ class ConexionList extends PureComponent {
 //   getIndConexionLists: selectIndConexions(),
 // });
 const mapStateToProps = state => {
-  console.log('sdsd', state.ConexionReducer);
+  // console.log('sdsd', state.ConexionReducer);
   const {ConexionReducer} = state;
   return {
     getIndConexionLists: ConexionReducer.individualConexions,
