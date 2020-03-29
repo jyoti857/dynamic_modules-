@@ -10,12 +10,12 @@ const Dropdown = props => {
   return (
     <Field
       label={label}
-      //   name={name}
+      name={name}
       data={data}
       component={RFDropdown}
-      //   required={required}
-      //   disabled={disabled}
-      //   onChangeTrigger={onChangeTrigger}
+      required={required}
+      disabled={disabled}
+      onChangeTrigger={onChangeTrigger}
     />
   );
 };

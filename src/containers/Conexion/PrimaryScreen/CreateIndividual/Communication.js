@@ -98,7 +98,7 @@ const Communication = props => {
             </Col>
           </Row>
           <Row>
-            <Col style={{marginBottom: 80}}>
+            <Col style={{marginBottom: 40}}>
               <Dropdown
                 label="select contact preference"
                 name="ind_contact_preference"

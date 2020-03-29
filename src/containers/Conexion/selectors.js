@@ -8,3 +8,5 @@ export const selectIndConexions = () =>
     conexionStore,
     dataState => dataState.individualConexions,
   );
+export const selectIndividualDetails = ({ConexionReducer}) =>
+  ConexionReducer.individualDetails;

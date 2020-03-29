@@ -1,4 +1,4 @@
-import {call, takeLatest, put} from 'redux-saga/effects';
+import {call, takeLatest, put, select} from 'redux-saga/effects';
 import {
   GET_IND_CONEXIONS,
   GET_ORG_CONEXIONS,
@@ -6,6 +6,7 @@ import {
   METADATA_VARIABLE,
   GET_ORG_DD_VALUE,
   GET_USER_DD_VALUE,
+  CREATE_INDIVIDUAL,
 } from './constants';
 import config from '../../config';
 import request from '../../utils/request';
@@ -16,6 +17,8 @@ import {
   saveOrgDDList,
   saveUserDDList,
 } from './actions';
+import {selectIndividualDetails} from './selectors';
+import {individualConexionPayloadMapper} from './mappers';
 
 function* getIndividualConexionAPI({initialPage}) {
   //   console.log('EIE@IKJE@K from saga _----------.');
@@ -116,10 +119,35 @@ function* getUserDDValuesAPI() {
   }
 }
 
+function* createIndividualDetailsAPI() {
+  const newIndividual = yield select(selectIndividualDetails);
+  const requestURL = `${config.apiURL}CreateIndividualConexion`;
+  console.log('from saga new Individual fecth from store --> ', newIndividual);
+  const individualConexionPayload = individualConexionPayloadMapper(
+    newIndividual,
+  );
+  const body = JSON.stringify(individualConexionPayload);
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(individualConexionPayload),
+  };
+  const response = yield call(request, requestURL, options);
+  console.log(
+    'from create Indiviual details response -->',
+    body,
+    '--->\n',
+    response,
+  );
+}
+
 export default function* ConexionSaga() {
   yield takeLatest(GET_IND_CONEXIONS, getIndividualConexionAPI);
   yield takeLatest(GET_ORG_CONEXIONS, getOrganizationConexionAPI);
   yield takeLatest(FETCH_DD_METADATA, getConexionMetaDataAPI);
   yield takeLatest(GET_ORG_DD_VALUE, getOrgDDValuesAPI);
   yield takeLatest(GET_USER_DD_VALUE, getUserDDValuesAPI);
+  yield takeLatest(CREATE_INDIVIDUAL, createIndividualDetailsAPI);
 }

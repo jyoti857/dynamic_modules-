@@ -13,7 +13,10 @@ export const SAVE_ORG_DD_VALUE = '@DYNAMIC/SAVE_ORG_DD_VALUE';
 export const GET_USER_DD_VALUE = '@DYNAMIC/GET_USER_DD_VALUE';
 export const SAVE_USER_DD_VALUE = '@DYNAMIC/SAVE_USER_DD_VALUE';
 
+export const CREATE_INDIVIDUAL = '@DYNAMIC/SCREATE_INDIVIDUAL';
+
 export const SET_INDIVIDUAL_MODAL = '@DYNAMIC/SET_INDIVIDUAL_MODAL';
+export const SET_INDIVIDUAL_DETAILS = '@DYNAMIC/SET_INDIVIDUAL_DETAILS';
 
 export const SET_EDIT_CONEXION = '@DYNAMIC/SET_EDIT_CONEXION';
 export const METADATA_VARIABLE =
@@ -31,4 +34,16 @@ export const STATUS = [
     value: 'INAC',
     label: 'Inactive',
   },
+];
+
+export const shareTypeObj = {
+  PRIVATE: 'PRIV',
+  PUBLIC: 'PUBL',
+  SHARED: 'SHAR',
+};
+
+export const shareTypes = [
+  {value: 'PUBL', label: 'Public', key: 0},
+  {value: 'PRIV', label: 'Private', key: 1},
+  {value: 'SHAR', label: 'Shared', key: 3},
 ];

@@ -11,6 +11,8 @@ import {
   SET_EDIT_CONEXION,
   GET_USER_DD_VALUE,
   SAVE_USER_DD_VALUE,
+  SET_INDIVIDUAL_DETAILS,
+  CREATE_INDIVIDUAL,
 } from './constants';
 
 export const getIndConexions = initialPage => {
@@ -75,4 +77,13 @@ export const saveUserDDList = userDDValues => ({
 export const setEditConexion = value => ({
   type: SET_EDIT_CONEXION,
   value,
+});
+
+export const setIndividualDetails = value => ({
+  type: SET_INDIVIDUAL_DETAILS,
+  value,
+});
+
+export const dispatchCreateIndividual = () => ({
+  type: CREATE_INDIVIDUAL,
 });

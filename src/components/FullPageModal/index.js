@@ -76,7 +76,7 @@ const FullPageModal = props => {
             colors={['#6a11cb', '#2575fc']}
             style={[styles.titleView, getStatusBarStyle()]}>
             <Row>
-              <Col>
+              <Col size={20} style={styles.closeIcon}>
                 <IconButton
                   icon={() => (
                     <Feather name="times-circle" color="#fff" size={30} bold />
@@ -85,7 +85,7 @@ const FullPageModal = props => {
                   onPress={closeModal}
                 />
               </Col>
-              <Col>
+              <Col size={60} style={styles.headerTitle}>
                 {!isTablet ? (
                   <Title style={styles.headerText}>{modalHeaderText}</Title>
                 ) : (
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     justifyContent: 'center',
     alignItems: 'center',
-    alignContent: 'center',
+    // alignContent: 'center',
   },
   scrollView: {
     flexGrow: 1,

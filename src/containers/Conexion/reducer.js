@@ -7,6 +7,7 @@ import {
   SAVE_ORG_DD_VALUE,
   SET_EDIT_CONEXION,
   SAVE_USER_DD_VALUE,
+  SET_INDIVIDUAL_DETAILS,
 } from './constants';
 
 export const conexionInitialState = {
@@ -20,6 +21,7 @@ export const conexionInitialState = {
   metaData: {},
   orgDropdown: [],
   userDropdown: [],
+  individualDetails: {},
   editConexion: false,
 };
 
@@ -78,6 +80,10 @@ const conexionStore = (state = conexionInitialState, action) =>
       }
       case SAVE_USER_DD_VALUE: {
         draftState.userDropdown = action.userDDValues;
+        break;
+      }
+      case SET_INDIVIDUAL_DETAILS: {
+        draftState.individualDetails = action.value;
         break;
       }
       default:
