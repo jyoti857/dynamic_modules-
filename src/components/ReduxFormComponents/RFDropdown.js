@@ -7,9 +7,9 @@ class RFDropdown extends React.Component {
   onChangeHandler = event => {
     const {input, onChangeTrigger} = this.props;
     input.onChange(event);
-    // if (onChangeTrigger) {
-    //   onChangeTrigger();
-    // }
+    if (onChangeTrigger) {
+      onChangeTrigger();
+    }
   };
   render() {
     const {
@@ -33,8 +33,8 @@ class RFDropdown extends React.Component {
           label={required ? `${label}*` : label}
           style={styles.dropDown}
           data={data}
-          labelTextStyle={styles.label}
-          titleTextStyle={styles.font}
+          // labelTextStyle={styles.label}
+          // titleTextStyle={styles.font}
           labelFontSize={12}
           value={input.value}
           onChangeText={this.onchangeHandler}
