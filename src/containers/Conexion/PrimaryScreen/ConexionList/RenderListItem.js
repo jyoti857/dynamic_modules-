@@ -42,24 +42,29 @@ const getIndAvatarText = (firstName, lastName) => {
 const RenderListItem = props => {
   //   const [pressValue] = user;
   const {delay, onPressItem, item} = props;
+  function _onPress() {
+    onPressItem(item.ConexionId);
+  }
   return (
-    <Card key={item.ConexionId} style={(ListCardStyle.root, {width: '100%'})}>
-      <Card.Title
-        title={<Subheading>{item.DisplayName.trim()}</Subheading>}
-        subtitle={getIndSubDetails(item)}
-        left={leftProps => (
-          <ImageBackground
-            source={avatar || null}
-            style={AvatarStyle.root}
-            imageStyle={{borderRadius: 25}}
-            {...leftProps}>
-            <Title style={{color: '#000'}}>
-              {getIndAvatarText(item.Name.trim(), item.LastName.trim())}
-            </Title>
-          </ImageBackground>
-        )}
-      />
-    </Card>
+    <TouchableWithoutFeedback onPress={_onPress}>
+      <Card key={item.ConexionId} style={(ListCardStyle.root, {width: '100%'})}>
+        <Card.Title
+          title={<Subheading>{item.DisplayName.trim()}</Subheading>}
+          subtitle={getIndSubDetails(item)}
+          left={leftProps => (
+            <ImageBackground
+              source={avatar || null}
+              style={AvatarStyle.root}
+              imageStyle={{borderRadius: 25}}
+              {...leftProps}>
+              <Title style={{color: '#000'}}>
+                {getIndAvatarText(item.Name.trim(), item.LastName.trim())}
+              </Title>
+            </ImageBackground>
+          )}
+        />
+      </Card>
+    </TouchableWithoutFeedback>
   );
 };
 

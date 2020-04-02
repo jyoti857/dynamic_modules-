@@ -8,6 +8,8 @@ import {
   SET_EDIT_CONEXION,
   SAVE_USER_DD_VALUE,
   SET_INDIVIDUAL_DETAILS,
+  SAVE_CONEXION_ID,
+  SAVE_CONEXION_DETAILS,
 } from './constants';
 
 export const conexionInitialState = {
@@ -23,6 +25,8 @@ export const conexionInitialState = {
   userDropdown: [],
   individualDetails: {},
   editConexion: false,
+  selectedConexion: '',
+  individualConexionDetails: {},
 };
 
 const conexionStore = (state = conexionInitialState, action) =>
@@ -81,6 +85,15 @@ const conexionStore = (state = conexionInitialState, action) =>
       }
       case SET_INDIVIDUAL_DETAILS: {
         draftState.individualDetails = action.value;
+        break;
+      }
+      case SAVE_CONEXION_ID: {
+        draftState.selectedConexion = action.id;
+        break;
+      }
+      case SAVE_CONEXION_DETAILS: {
+        console.log('action.details -->', action.details);
+        draftState.individualConexionDetails = action.details;
         break;
       }
       default:

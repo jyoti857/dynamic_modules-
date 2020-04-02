@@ -39,7 +39,7 @@ class RFRadioButton extends React.Component {
                 <TouchableRipple>
                   <View style={styles.row}>
                     <Paragraph>{radio.label}</Paragraph>
-                    <RadioButton value={radio.label} />
+                    <RadioButton value={radio.value} />
                   </View>
                 </TouchableRipple>
               </Col>

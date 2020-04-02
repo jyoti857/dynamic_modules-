@@ -8,7 +8,8 @@ const GradientBackground = () => (
     style={{flex: 1}}
     start={LINEAR_START}
     end={LINEAR_END}
-    color={colors.DEAFULT_HEADER}>
+    // colors={colors.DEAFULT_HEADER}
+    colors={['#6a11cb', '#2575fc']}>
     <StatusBar
       barStyle="light-content"
       translucent

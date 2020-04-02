@@ -4,7 +4,7 @@ import {shareTypeObj} from './constants';
 export const individualConexionPayloadMapper = form => {
   const payload = {
     SharingType: null,
-    // ShortName: null,
+    ShortName: null,
     LastName: null,
     Name: null,
     MiddleName: null,

@@ -7,6 +7,8 @@ import {
   GET_ORG_DD_VALUE,
   GET_USER_DD_VALUE,
   CREATE_INDIVIDUAL,
+  CREATE_CONEXION_FORM,
+  GET_CONEXION_DETAILS,
 } from './constants';
 import config from '../../config';
 import request from '../../utils/request';
@@ -16,8 +18,11 @@ import {
   saveMetaData,
   saveOrgDDList,
   saveUserDDList,
+  setIndividualModalVisibility,
+  resetForm,
+  saveConexionDetails,
 } from './actions';
-import {selectIndividualDetails} from './selectors';
+import {selectIndividualDetails, selectIndividualConexionId} from './selectors';
 import {individualConexionPayloadMapper} from './mappers';
 
 function* getIndividualConexionAPI({initialPage}) {
@@ -121,12 +126,11 @@ function* getUserDDValuesAPI() {
 
 function* createIndividualDetailsAPI() {
   const newIndividual = yield select(selectIndividualDetails);
+  // const newIndividual = yield select(selectIndividualDetails());
   const requestURL = `${config.apiURL}CreateIndividualConexion`;
-  console.log('from saga new Individual fecth from store --> ', newIndividual);
   const individualConexionPayload = individualConexionPayloadMapper(
     newIndividual,
   );
-  const body = JSON.stringify(individualConexionPayload);
   const options = {
     method: 'POST',
     headers: {
@@ -135,12 +139,35 @@ function* createIndividualDetailsAPI() {
     body: JSON.stringify(individualConexionPayload),
   };
   const response = yield call(request, requestURL, options);
-  console.log(
-    'from create Indiviual details response -->',
-    body,
-    '--->\n',
-    response,
-  );
+  // console.log('body -->', JSON.stringify(individualConexionPayload, null, 2));
+  // console.log('response -->', response);
+  if (response.success) {
+    yield put(setIndividualModalVisibility(false));
+    // yield put(setCreateIndividualModalVisibility(false));
+    yield put(resetForm(CREATE_CONEXION_FORM));
+    // let the getConexionDetails get done and then come to this to complete
+    //yield put(getIndConexions());
+    // yield put(getConexionDetails());
+  }
+}
+
+function* getConexionDetailsAPI() {
+  const selectedIndividualId = yield select(selectIndividualConexionId);
+  console.log('Selected individual id ---> ', selectedIndividualId);
+  const requestURL = `${
+    config.apiURL
+  }ConexionDetail?conexionId=${selectedIndividualId}`;
+  const options = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+  const response = yield call(request, requestURL, options);
+  if (response.success) {
+    console.log('response from getConexionDetailsAPI -->', response.data);
+    yield put(saveConexionDetails(response.data));
+  }
 }
 
 export default function* ConexionSaga() {
@@ -150,4 +177,5 @@ export default function* ConexionSaga() {
   yield takeLatest(GET_ORG_DD_VALUE, getOrgDDValuesAPI);
   yield takeLatest(GET_USER_DD_VALUE, getUserDDValuesAPI);
   yield takeLatest(CREATE_INDIVIDUAL, createIndividualDetailsAPI);
+  yield takeLatest(GET_CONEXION_DETAILS, getConexionDetailsAPI);
 }

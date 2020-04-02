@@ -6,6 +6,7 @@ import {
   setIndividualModalVisibility,
   getMetaData,
   getOrgDDList,
+  saveSelectedConexionId,
 } from '../actions';
 import {createStructuredSelector} from 'reselect';
 import {selectIndConexions} from '../selectors';
@@ -27,6 +28,7 @@ const PrimaryScreen = props => {
     dispatchConexionModalState,
     fetchDropDownValues,
     dispatchGetOrgDDList,
+    dispatchSetConexionId,
   } = props;
   const [indSelected, setIndSelected] = useState(true);
   const [orgSelected, setOrgSelected] = useState(false);
@@ -52,6 +54,12 @@ const PrimaryScreen = props => {
   // handle conexion list
   const handleConexionSelect = id => {
     // secondary screen yet not developed
+    dispatchSetConexionId(id);
+    console.log('id -->', id);
+    navigation.navigate('ConexionSecondaryScreen', {
+      selectedValue: indSelected,
+      selectedId: id,
+    });
   };
 
   const getConexionList = () => {
@@ -79,7 +87,10 @@ const PrimaryScreen = props => {
   return (
     <SafeAreaView forceInset={{bottom: 'never'}}>
       <CreateIndividual />
-      <ConexionList indSelected={indSelected} />
+      <ConexionList
+        indSelected={indSelected}
+        onPressItem={handleConexionSelect}
+      />
       <FABUI handleConexionCreate={createConexionTrigger} />
     </SafeAreaView>
   );
@@ -101,6 +112,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(setIndividualModalVisibility(modalState)),
   fetchDropDownValues: () => dispatch(getMetaData()),
   dispatchGetOrgDDList: () => dispatch(getOrgDDList()),
+  dispatchSetConexionId: id => dispatch(saveSelectedConexionId(id)),
 });
 
 export default connect(

@@ -14,6 +14,9 @@ import {
   SAVE_USER_DD_VALUE,
   SET_INDIVIDUAL_DETAILS,
   CREATE_INDIVIDUAL,
+  SAVE_CONEXION_ID,
+  GET_CONEXION_DETAILS,
+  SAVE_CONEXION_DETAILS,
 } from './constants';
 
 export const getIndConexions = initialPage => {
@@ -91,6 +94,19 @@ export const dispatchCreateIndividual = () => ({
 
 export const setEditConexionValue = value => ({
   type: value,
+});
+
+export const saveSelectedConexionId = id => ({
+  type: SAVE_CONEXION_ID,
+  id,
+});
+
+export const getConexionDetails = () => ({
+  type: GET_CONEXION_DETAILS,
+});
+export const saveConexionDetails = details => ({
+  type: SAVE_CONEXION_DETAILS,
+  details,
 });
 
 export const resetForm = formName => reset(formName);

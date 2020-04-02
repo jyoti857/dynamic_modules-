@@ -98,7 +98,7 @@ class ConexionList extends PureComponent {
               <RenderListItem
                 item={item}
                 delay={index % 10}
-                // onPressItem={onPressItem}
+                onPressItem={this.props.onPressItem}
               />
             )}
             keyExtractor={item => item.ConexionId.toString()}
@@ -122,7 +122,7 @@ class ConexionList extends PureComponent {
           <RenderOrgListItem
             item={item}
             delay={index % 10}
-            //   onPressItem={onPressItem}
+            onPressItem={this.props.onPressItem}
           />
         )}
         keyExtractor={item => item.ConexionId.toString()}

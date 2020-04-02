@@ -83,7 +83,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const ReduxForm = reduxForm({
-  form: 'CREATE_INDIVIDUAL',
+  form: CREATE_CONEXION_FORM,
 });
 const withConnect = connect(
   mapStateToProps,

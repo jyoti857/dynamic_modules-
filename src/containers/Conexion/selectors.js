@@ -10,3 +10,12 @@ export const selectIndConexions = () =>
   );
 export const selectIndividualDetails = ({ConexionReducer}) =>
   ConexionReducer.individualDetails;
+
+// export const selectIndividualDetails = () =>
+//   createSelector(
+//     conexionStore,
+//     dataState => dataState.individualDetails,
+//   );
+
+export const selectIndividualConexionId = ({ConexionReducer}) =>
+  ConexionReducer.selectedConexion;
