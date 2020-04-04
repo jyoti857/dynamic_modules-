@@ -16,6 +16,7 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* dynamic_modulesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* dynamic_modulesTests.m */; };
+		3B423AD52436921E00C643E9 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B423AD42436921E00C643E9 /* File.swift */; };
 		A2C7BECC32485B8E7F864600 /* libPods-dynamic_modules-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CCC90EDB47A9DE15B2320F9 /* libPods-dynamic_modules-tvOSTests.a */; };
 		D36CFC3938BDFE796A7BEF30 /* libPods-dynamic_modules-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6CDCBE230E714E22FDAB21 /* libPods-dynamic_modules-tvOS.a */; };
 		D475F3D5666C09904028A685 /* libPods-dynamic_modules.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BFCEA6F138BF4E1D0D2A349 /* libPods-dynamic_modules.a */; };
@@ -56,6 +57,8 @@
 		13ED1595777048E5BAB3F84E /* Pods-dynamic_modules-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dynamic_modules-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-dynamic_modules-tvOSTests/Pods-dynamic_modules-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* dynamic_modules-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dynamic_modules-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* dynamic_modules-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "dynamic_modules-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B423AD32436921D00C643E9 /* dynamic_modules-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "dynamic_modules-Bridging-Header.h"; sourceTree = "<group>"; };
+		3B423AD42436921E00C643E9 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		3F9460A91592D771C0512FF0 /* Pods-dynamic_modules-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dynamic_modules-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-dynamic_modules-tvOSTests/Pods-dynamic_modules-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		5BFCEA6F138BF4E1D0D2A349 /* libPods-dynamic_modules.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dynamic_modules.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		60A5F59C444C12F739A68846 /* Pods-dynamic_modules-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dynamic_modules-tvOS.release.xcconfig"; path = "Target Support Files/Pods-dynamic_modules-tvOS/Pods-dynamic_modules-tvOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -130,8 +133,10 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
+				3B423AD42436921E00C643E9 /* File.swift */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				3B423AD32436921D00C643E9 /* dynamic_modules-Bridging-Header.h */,
 			);
 			name = dynamic_modules;
 			sourceTree = "<group>";
@@ -291,6 +296,9 @@
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						LastSwiftMigration = 1110;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -578,6 +586,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				3B423AD52436921E00C643E9 /* File.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -631,6 +640,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 942061E195E3A2304F742B45 /* Pods-dynamic_modulesTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -654,6 +664,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 696E392780E5CC76B0786779 /* Pods-dynamic_modulesTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = dynamic_modulesTests/Info.plist;
@@ -675,6 +686,7 @@
 			baseConfigurationReference = 64E10094C28254FAB8F11F2C /* Pods-dynamic_modules.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				INFOPLIST_FILE = dynamic_modules/Info.plist;
@@ -686,6 +698,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = dynamic_modules;
+				SWIFT_OBJC_BRIDGING_HEADER = "dynamic_modules-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -695,6 +710,7 @@
 			baseConfigurationReference = 0BBE51FB9D045A47B17C6359 /* Pods-dynamic_modules.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = dynamic_modules/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -705,6 +721,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = dynamic_modules;
+				SWIFT_OBJC_BRIDGING_HEADER = "dynamic_modules-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

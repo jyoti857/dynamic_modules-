@@ -17,8 +17,7 @@ const DetailScreen = props => {
     dispatchGetConexionDetails();
   }, [dispatchGetConexionDetails]);
   return (
-    <View>
-      <Text>this is detail Screen of id {selectedId}</Text>
+    <View style={{flex: 1}}>
       <ProfileView conexionDetails={conexionDetails} />
     </View>
   );
