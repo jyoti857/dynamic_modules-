@@ -12,6 +12,7 @@ import {
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {CardStyle} from '../../../../../../globalstyles/styles';
 import _ from 'lodash';
+import {openWeb, openPhone} from '../../../../../../utils';
 
 const Communications = props => {
   const {data} = props;
@@ -48,7 +49,7 @@ const Communications = props => {
                       justifyContent: 'flex-start',
                       alignItems: 'flex-start',
                     }}>
-                    {data.PersonalEmailAddress}s;dald
+                    {openWeb(data.PersonalEmailAddress)}
                   </Text>
                 </DataTable.Cell>
               </DataTable.Row>
@@ -57,7 +58,7 @@ const Communications = props => {
               <DataTable.Row>
                 <Text style={{color: 'grey'}}>Mobile1 Telephone number</Text>
                 <DataTable.Cell>
-                  <Caption>{data.Mobile1TelephoneNumber}</Caption>
+                  <Caption>{openPhone(data.Mobile1TelephoneNumber)}</Caption>
                 </DataTable.Cell>
               </DataTable.Row>
             </View>

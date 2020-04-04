@@ -29,6 +29,12 @@ export const SET_EDIT_CONEXION = '@DYNAMIC/SET_EDIT_CONEXION';
 export const METADATA_VARIABLE =
   'title,suffix,address_type,country_list,conexion_contact_preference';
 
+export const GENERAL_ERROR = 'Message from server: Something just went wrong!';
+
+export const CREATOR = 'CTOR';
+export const SHARED = 'SHAR';
+export const MANAGER = 'MGR';
+
 export const PAGE_CONFIG = {pageNumber: 1, pageSize: 20};
 export const STATUS = [
   {
