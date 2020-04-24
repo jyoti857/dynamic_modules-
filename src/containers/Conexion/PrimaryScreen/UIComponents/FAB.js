@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {FAB, Portal, Provider, withTheme} from 'react-native-paper';
 import {INDIVIDUAL, ORGANIZATION} from '../../constants';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 const FABUI = props => {
   const [fabOpen, setFabOpen] = useState(false);
   const {handleConexionCreate} = props;

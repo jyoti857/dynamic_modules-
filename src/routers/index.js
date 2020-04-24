@@ -9,6 +9,7 @@ import jwt from 'jwt-decode';
 import AsyncStorage from '@react-native-community/async-storage';
 import MobileDrawerContent from './MobileDrawerContent';
 import ConexionStack from './Stacks/ConexionStack';
+import ExpenseStack from './Stacks/ExpenseStack';
 
 const Drawer = createDrawerNavigator();
 
@@ -63,7 +64,7 @@ const AppRouter = () => {
         {() => <ConexionStack />}
       </Drawer.Screen>
       {roles.includes('has_expenses_access') ? (
-        <Drawer.Screen name="Expense">{() => <ConexionStack />}</Drawer.Screen>
+        <Drawer.Screen name="Expense">{() => <ExpenseStack />}</Drawer.Screen>
       ) : null}
     </Drawer.Navigator>
   );

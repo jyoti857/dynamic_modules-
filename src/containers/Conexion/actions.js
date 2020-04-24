@@ -17,6 +17,8 @@ import {
   SAVE_CONEXION_ID,
   GET_CONEXION_DETAILS,
   SAVE_CONEXION_DETAILS,
+  EDIT_CNX_MODAL,
+  EDIT_IND_CONEXION,
 } from './constants';
 
 export const getIndConexions = initialPage => {
@@ -107,6 +109,14 @@ export const getConexionDetails = () => ({
 export const saveConexionDetails = details => ({
   type: SAVE_CONEXION_DETAILS,
   details,
+});
+
+export const setEditConexionModal = modalVisible => ({
+  type: EDIT_CNX_MODAL,
+  modalVisible,
+});
+export const editIndividualConexion = () => ({
+  type: EDIT_IND_CONEXION,
 });
 
 export const resetForm = formName => reset(formName);

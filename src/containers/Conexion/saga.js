@@ -9,6 +9,8 @@ import {
   CREATE_INDIVIDUAL,
   CREATE_CONEXION_FORM,
   GET_CONEXION_DETAILS,
+  EDIT_IND_CONEXION,
+  PAGE_CONFIG,
 } from './constants';
 import config from '../../config';
 import request from '../../utils/request';
@@ -21,6 +23,9 @@ import {
   setIndividualModalVisibility,
   resetForm,
   saveConexionDetails,
+  getConexionDetails,
+  getIndConexions,
+  setEditConexionModal,
 } from './actions';
 import {selectIndividualDetails, selectIndividualConexionId} from './selectors';
 import {individualConexionPayloadMapper} from './mappers';
@@ -169,6 +174,34 @@ function* getConexionDetailsAPI() {
     yield put(saveConexionDetails(response.data));
   }
 }
+function* editIndividualDetailsAPI() {
+  const newIndividual = yield select(selectIndividualDetails);
+  const conexionId = yield select(selectIndividualConexionId);
+  const requestURL = `${config.apiURL}EditIndividualConexion`;
+  const individualConexionPayload = individualConexionPayloadMapper(
+    newIndividual,
+  );
+  individualConexionPayload.ConexionId = conexionId;
+  console.log('from edit conexion saga, new Individual ', newIndividual);
+  console.log(
+    'from edit conexion saga individualConexionPayload, ',
+    individualConexionPayload,
+  );
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(individualConexionPayload),
+  };
+  const response = yield call(request, requestURL, options);
+  console.log('from saga edit conexion details  --->', response);
+  if (response.success) {
+    yield put(setEditConexionModal(false));
+    yield put(getConexionDetails());
+    yield put(getIndConexions(PAGE_CONFIG));
+  }
+}
 
 export default function* ConexionSaga() {
   yield takeLatest(GET_IND_CONEXIONS, getIndividualConexionAPI);
@@ -178,4 +211,5 @@ export default function* ConexionSaga() {
   yield takeLatest(GET_USER_DD_VALUE, getUserDDValuesAPI);
   yield takeLatest(CREATE_INDIVIDUAL, createIndividualDetailsAPI);
   yield takeLatest(GET_CONEXION_DETAILS, getConexionDetailsAPI);
+  yield takeLatest(EDIT_IND_CONEXION, editIndividualDetailsAPI);
 }

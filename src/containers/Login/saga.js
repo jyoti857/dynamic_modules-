@@ -35,7 +35,6 @@ function* setSignIn({username, password}) {
 }
 
 function* getUserDataAPI() {
-  console.log('get user data api saga');
   const requestURL = `${config.apiURL}/GetUserProfile`;
   const options = {
     method: 'GET',

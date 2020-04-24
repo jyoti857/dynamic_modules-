@@ -10,6 +10,7 @@ import {
   SET_INDIVIDUAL_DETAILS,
   SAVE_CONEXION_ID,
   SAVE_CONEXION_DETAILS,
+  EDIT_CNX_MODAL,
 } from './constants';
 
 export const conexionInitialState = {
@@ -20,6 +21,7 @@ export const conexionInitialState = {
     types: '',
   },
   conexionModal: false,
+  editConexionModal: false,
   metaData: {},
   orgDropdown: [],
   userDropdown: [],
@@ -94,6 +96,10 @@ const conexionStore = (state = conexionInitialState, action) =>
       case SAVE_CONEXION_DETAILS: {
         console.log('action.details -->', action.details);
         draftState.individualConexionDetails = action.details;
+        break;
+      }
+      case EDIT_CNX_MODAL: {
+        draftState.editConexionModal = action.modalVisible;
         break;
       }
       default:

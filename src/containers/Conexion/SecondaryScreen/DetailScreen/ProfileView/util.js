@@ -7,7 +7,7 @@ import {CREATOR, MANAGER} from '../../../constants';
 
 const EMPTY_TEXT = <Text>--</Text>;
 
-export const getTitle = (title, displayame) => {
+export const getTitleName = (title, displayame) => {
   if (title) {
     return `${title}. ${displayame}`;
   }
