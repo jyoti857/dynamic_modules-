@@ -5,10 +5,17 @@ import ListItemLeft from './ListItemLeft';
 import ListItemRight from './ListItemRight';
 
 const ExpenseListItem = props => {
-  const {item} = props;
-  console.log('from EXxpense list item props item ', item);
+  const {item, itemPress} = props;
+  //   console.log('from EXxpense list item props item ', item);
+  const _onPress = () => {
+    itemPress(item.ExpenseId);
+    console.log(
+      'item pressed to navigate to the secondary screen',
+      item.ExpenseId,
+    );
+  };
   return (
-    <TouchableWithoutFeedback>
+    <TouchableWithoutFeedback onPress={_onPress}>
       <Card>
         <Card.Title
           left={lProps => <ListItemLeft {...lProps} value={item.ExpenseKey} />}

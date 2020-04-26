@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {ImageBackground, Text} from 'react-native';
 import {AvatarStyle} from '../../../../../globalstyles/styles';

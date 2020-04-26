@@ -13,7 +13,7 @@ class ExpenseList extends React.Component {
   }
   renderExpenseList = () => {
     const {expenseList, searchQuery} = this.props;
-    console.log('expense list from renderExpense list @*@&$@', expenseList);
+    // console.log('expense list from renderExpense list @*@&$@', expenseList);
     if (
       searchQuery &&
       searchQuery.searchString &&
@@ -42,7 +42,11 @@ class ExpenseList extends React.Component {
       <FlatList
         data={this.renderExpenseList()}
         renderItem={({item, index}) => (
-          <ExpenseListItem item={item} delay={index % 10} />
+          <ExpenseListItem
+            item={item}
+            delay={index % 10}
+            itemPress={this.props.itemPress}
+          />
         )}
         keyExtractor={item => item.ExpenseId && item.ExpenseId.toString()}
         ListEmptyComponent={this.renderListEmpty}

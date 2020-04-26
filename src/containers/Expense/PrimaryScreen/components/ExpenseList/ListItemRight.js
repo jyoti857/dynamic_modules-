@@ -22,7 +22,9 @@ const ListItemRight = props => {
             alignItems: 'center',
             alignContent: 'center',
           }}>
-          <Title>{`${item.Currency.Value}${item.TotalAmount}`}</Title>
+          <Title>{`${item.Currency && item.Currency.Value}${
+            item.TotalAmount
+          }`}</Title>
         </View>
         <View
           style={{
@@ -32,11 +34,13 @@ const ListItemRight = props => {
             alignContent: 'center',
           }}>
           <Text style={{fontSize: 10, paddingRight: 5}}>
-            {item.CurrentStatus.Value}
+            {item.CurrentStatus && item.CurrentStatus.Value}
           </Text>
           <FontAwesome
             name="circle"
-            color={statusColorMapper(item.CurrentStatus.Code)}
+            color={statusColorMapper(
+              item.CurrentStatus && item.CurrentStatus.Code,
+            )}
             size={12}
           />
         </View>
