@@ -1,14 +1,26 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, FlatList} from 'react-native';
 import {Card, IconButton, withTheme, Colors, Divider} from 'react-native-paper';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {connect} from 'react-redux';
 import {compose} from 'redux';
 import RenderReportItem from './RenderReportItems';
+import NoData from '../../../../../components/NoData';
 
 const ReportItems = props => {
   const {colors} = props.theme;
-  const {ExpenseUIActions, ExpenseDetail} = props.expenseDetails;
+  const {ExpenseUIActions, expenseDetail, ExpenseItems} = props.expenseDetails;
+  console.log('Epxmsdods', ExpenseItems);
+  const renderFlatList = expenseItems => (
+    <FlatList
+      data={expenseItems}
+      renderItem={({item}) => <RenderReportItem data={item} />}
+      keyExtractor={item => item.ExpenseItemId.toString()}
+      ListEmptyComponent={
+        <NoData displayText="No report created for this Expense" />
+      }
+    />
+  );
   return (
     <View style={styles.main}>
       <Card style={styles.cardRoot}>
@@ -50,9 +62,7 @@ const ReportItems = props => {
           }
         />
         <Divider />
-        <Card.Content>
-          <RenderReportItem />
-        </Card.Content>
+        {renderFlatList(ExpenseItems && ExpenseItems.Data)}
       </Card>
     </View>
   );

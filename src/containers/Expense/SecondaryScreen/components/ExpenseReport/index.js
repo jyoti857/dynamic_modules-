@@ -2,7 +2,7 @@
 import React from 'react';
 import ExpenseCard from './ExpenseCard';
 import {connect} from 'react-redux';
-import {View} from 'react-native';
+import {View, ScrollView} from 'react-native';
 import ReportDetails from './ReportDetails';
 import {Grid, Row, Col} from 'react-native-easy-grid';
 import ReportHistory from './ReportHistory';
@@ -12,7 +12,7 @@ const ExpenseReport = props => {
   const {expenseDetails} = props;
   console.log('Expense Report =---->', expenseDetails);
   return (
-    <View>
+    <ScrollView style={{marginBottom: 30}}>
       <View>
         <ExpenseCard
           expenseDetail={expenseDetails && expenseDetails.ExpenseDetail}
@@ -24,7 +24,7 @@ const ExpenseReport = props => {
       <View>
         <ReportItems />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
