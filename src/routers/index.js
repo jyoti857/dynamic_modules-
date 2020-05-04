@@ -66,6 +66,11 @@ const AppRouter = () => {
       {roles.includes('has_expenses_access') ? (
         <Drawer.Screen name="Expense">{() => <ExpenseStack />}</Drawer.Screen>
       ) : null}
+      {roles.includes('has_opportunity_access') ? (
+        <Drawer.Screen name="Opportunity">
+          {() => <ExpenseStack />}
+        </Drawer.Screen>
+      ) : null}
     </Drawer.Navigator>
   );
 };

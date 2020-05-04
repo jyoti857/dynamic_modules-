@@ -8,9 +8,12 @@ import ConexionSaga from './containers/Conexion/saga';
 import {reducer as formReducer} from 'redux-form';
 import ExpensePrimaryReducer from './containers/Expense/PrimaryScreen/reducer';
 import ExpenseSecondaryReducer from './containers/Expense/SecondaryScreen/reducer';
+import OpportunityPrimaryReducer from './containers/Opportunity/PrimaryScreen/reducer';
 
 import ExpensePrimarySaga from './containers/Expense/PrimaryScreen/saga';
 import ExpenseSecondarySaga from './containers/Expense/SecondaryScreen/saga';
+import OpportunityPrimarySaga from './containers/Opportunity/PrimaryScreen/saga';
+
 const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = combineReducers({
@@ -18,6 +21,7 @@ const rootReducer = combineReducers({
   ConexionReducer,
   ExpensePrimaryReducer,
   ExpenseSecondaryReducer,
+  OpportunityPrimaryReducer,
   form: formReducer,
 });
 
@@ -27,6 +31,7 @@ function* rootSaga() {
     fork(ConexionSaga),
     fork(ExpensePrimarySaga),
     fork(ExpenseSecondarySaga),
+    fork(OpportunityPrimarySaga),
   ]);
 }
 const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));

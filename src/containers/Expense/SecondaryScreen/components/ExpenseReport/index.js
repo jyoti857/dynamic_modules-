@@ -7,6 +7,7 @@ import ReportDetails from './ReportDetails';
 import {Grid, Row, Col} from 'react-native-easy-grid';
 import ReportHistory from './ReportHistory';
 import ReportItems from '../ReportItems';
+import ReportReceipts from '../ReportsReceipts';
 
 const ExpenseReport = props => {
   const {expenseDetails} = props;
@@ -23,6 +24,12 @@ const ExpenseReport = props => {
       </View>
       <View>
         <ReportItems />
+      </View>
+      <View>
+        <ReportReceipts />
+      </View>
+      <View>
+        <ReportHistory />
       </View>
     </ScrollView>
   );
