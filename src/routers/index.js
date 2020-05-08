@@ -10,6 +10,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import MobileDrawerContent from './MobileDrawerContent';
 import ConexionStack from './Stacks/ConexionStack';
 import ExpenseStack from './Stacks/ExpenseStack';
+import OpportunityStack from './Stacks/OpportunityStack';
 
 const Drawer = createDrawerNavigator();
 
@@ -68,7 +69,7 @@ const AppRouter = () => {
       ) : null}
       {roles.includes('has_opportunity_access') ? (
         <Drawer.Screen name="Opportunity">
-          {() => <ExpenseStack />}
+          {() => <OpportunityStack />}
         </Drawer.Screen>
       ) : null}
     </Drawer.Navigator>
