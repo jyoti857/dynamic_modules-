@@ -1,8 +1,9 @@
-import React from 'react';
-import OpportunityDashboard from './PrimaryScreen/components/OpportunityDashboard';
+import React, {useState} from 'react';
+import PrimaryScreen from './PrimaryScreen';
 
 const Opportunity = props => {
-  return <OpportunityDashboard />;
+  const [switchOn, isSwtitchOn] = useState(true);
+  return <PrimaryScreen showAll={switchOn} />;
 };
 
 export default Opportunity;
