@@ -1,10 +1,8 @@
 import React from 'react';
-import {ScrollView, Text, View} from 'react-native';
+import {ScrollView, Text, View, StyleSheet} from 'react-native';
 import {Row, Col} from 'react-native-easy-grid';
 import Lo from 'lodash';
 import FlatListHeader from './DashboardFlatList/FlatListHeader';
-
-const uuidv1 = require('uuid/v1');
 
 const OpportunityDashboard = props => {
   const {oppsListByStage} = props;
@@ -13,8 +11,8 @@ const OpportunityDashboard = props => {
     if (!Lo.isEmpty(oppsListByStage)) {
       oppsListByStage.map((opp, index) => {
         return oppsArray.push(
-          <Col key={uuidv1()}>
-            <View>
+          <Col>
+            <View style={styles.cardHeader}>
               <FlatListHeader
                 color1={opp.colors.color1}
                 color2={opp.colors.color2}
@@ -27,7 +25,7 @@ const OpportunityDashboard = props => {
           </Col>,
         );
       });
-      // return <Text>Render opps frmo Opportunity Dashboard</Text>;
+      return <Text>Render opps frmo Opportunity Dashboard</Text>;
     }
   };
   return (
@@ -36,5 +34,11 @@ const OpportunityDashboard = props => {
     </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  cardHeader: {
+    height: 120,
+  },
+});
 
 export default OpportunityDashboard;

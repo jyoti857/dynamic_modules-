@@ -37,15 +37,15 @@ const OpportunityPrimaryReducer = (
         break;
       }
       case SAVE_OPPS_STAGES: {
-        console.log('----@!@!2 stage probability -->', action.data);
-        console.log('_----->', action.data);
+        // console.log('----@!@!2 stage probability -->', action.data);
+        // console.log('_----->', action.data);
         draftState.oppsStages = action.data;
         break;
       }
-      case SAVE_OPPS_STAGE_PROBABILITY: {
-        draftState.oppsStageProbabilityData = action.data;
-        break;
-      }
+      // case SAVE_OPPS_STAGE_PROBABILITY: {
+      //   draftState.oppsStageProbabilityData = action.data;
+      //   break;
+      // }
       default:
         return state;
     }

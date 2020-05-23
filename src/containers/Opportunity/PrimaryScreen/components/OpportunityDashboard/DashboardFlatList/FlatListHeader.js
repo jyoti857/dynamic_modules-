@@ -5,8 +5,10 @@ import Animated, {Easing} from 'react-native-reanimated';
 import {Card, Title, Subheading} from 'react-native-paper';
 import LinearGradient from 'react-native-linear-gradient';
 import {CARD_BORDER_RADIUS} from '../../../../../../utils/valueConstants';
+import {CardStyle} from '../../../../../../globalstyles/styles';
 
-const profileBG = require('dynamic_modules/src/assets/images/opps.png');
+// const profileBG = require('dynamic_modules/src/assets/images/opps.png');
+const profileBG = require('../../../../../../assets/images/opps.png');
 
 const FlatListHeader = props => {
   const [fadeValue] = useState(new Animated.Value(1));
@@ -15,17 +17,14 @@ const FlatListHeader = props => {
     Animated.timing(fadeValue, {
       toValue: 1,
       easing: Easing.Value,
-      duration: 1200,
-      delay: delay * 200,
+      duration: 600,
+      delay: delay * 100,
       useNativeDriver: true,
     });
-    return () => {
-      null;
-    };
   });
   return (
-    <Animated.View>
-      <Card>
+    <Animated.View style={{flex: 1, opacity: fadeValue}}>
+      <Card style={[CardStyle.root, styles.oppHeaderStyle]}>
         <LinearGradient
           start={{x: 0, y: 1}}
           end={{x: 1, y: 0}}
@@ -49,7 +48,20 @@ const FlatListHeader = props => {
 };
 
 const styles = StyleSheet.create({
-  imageBG: {},
+  imageBG: {
+    width: '100%',
+    height: '100%',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignContent: 'center',
+    alignItems: 'center',
+  },
+  oppHeaderStyle: {
+    marginTop: 0,
+    flex: 1,
+    width: 300,
+    backgroundColor: 'transparent',
+  },
 });
 
 export default FlatListHeader;

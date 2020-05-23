@@ -41,7 +41,7 @@ function* fetchOppsStageProbabilityAPI() {
   const response = yield call(request, requestURL, options);
   console.log('response fetch stage opps stage probability ', response);
   if (response.success) {
-    yield put(saveOppsStageProbability(response.data));
+    // yield put(saveOppsStageProbability(response.data));
   } else {
     console.log('wrong in save opps stage probability!!!');
   }

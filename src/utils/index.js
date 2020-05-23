@@ -2,7 +2,6 @@ import React from 'react';
 
 import Communications from 'react-native-communications';
 import {PixelRatio, Dimensions} from 'react-native';
-import 'intl';
 
 export const Util = {
   ratio: PixelRatio.get(),

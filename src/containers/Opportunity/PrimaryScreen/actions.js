@@ -15,13 +15,13 @@ export const fetchOpportunityMetadata = () => ({
   type: FETCH_OPPORTUNITY_METADATA,
 });
 
-export const fetchOppsStageProbability = () => ({
-  type: FETCH_OPPS_STAGE_PROBABILITY,
-});
-export const saveOppsStageProbability = data => ({
-  type: SAVE_OPPS_STAGE_PROBABILITY,
-  data,
-});
+// export const fetchOppsStageProbability = () => ({
+//   type: FETCH_OPPS_STAGE_PROBABILITY,
+// });
+// export const saveOppsStageProbability = data => ({
+//   type: SAVE_OPPS_STAGE_PROBABILITY,
+//   data,
+// });
 
 export const fetchOppsStages = showAll => ({
   type: FETCH_OPPS_STAGES,
