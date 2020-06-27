@@ -26,7 +26,7 @@ const PrimaryScreen = props => {
   }, [dispatchOppsStages, showAll]);
   console.log('opwepe, ', oppsStages);
   return (
-    <View>
+    <View style={{flex: 1}}>
       <OpportunityDashboard oppsListByStage={oppsStages} />
     </View>
   );

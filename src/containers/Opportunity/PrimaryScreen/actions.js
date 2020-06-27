@@ -9,7 +9,12 @@ import {
   SAVE_OPPS_STAGE_PROBABILITY,
   FETCH_OPPS_STAGES,
   SAVE_OPPS_STAGES,
+  SET_OPPORTUNITY_VISIBILITY,
+  SET_QUICK_VIEW_MODAL_STATE,
+  GET_IND_DD_VALUE,
+  SET_NEW_OPPORTUNITY,
 } from './constants';
+import {Value} from 'react-native-reanimated';
 
 export const fetchOpportunityMetadata = () => ({
   type: FETCH_OPPORTUNITY_METADATA,
@@ -23,6 +28,15 @@ export const fetchOpportunityMetadata = () => ({
 //   data,
 // });
 
+export const setCreateOpportunityModalVisibility = visibility => ({
+  type: SET_OPPORTUNITY_VISIBILITY,
+  visibility,
+});
+
+export const setOppQuickViewModalState = visibility => ({
+  type: SET_QUICK_VIEW_MODAL_STATE,
+  visibility,
+});
 export const fetchOppsStages = showAll => ({
   type: FETCH_OPPS_STAGES,
   showAll,
@@ -51,4 +65,14 @@ export const saveOrgDDList = data => ({
 export const saveOppsMetadata = data => ({
   type: SAVE_OPPS_METADATA,
   data,
+});
+
+export const getIndDDList = indDDValues => ({
+  type: GET_IND_DD_VALUE,
+  indDDValues,
+});
+
+export const setNewOpportunity = value => ({
+  type: SET_NEW_OPPORTUNITY,
+  value,
 });

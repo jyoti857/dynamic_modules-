@@ -4,11 +4,13 @@ import {
   SAVE_OPPS_METADATA,
   SAVE_OPPS_STAGE_PROBABILITY,
   SAVE_OPPS_STAGES,
+  SET_OPPORTUNITY_VISIBILITY,
 } from './constants';
 export const OpportunityPrimaryInitialState = {
   userDropdown: [],
   indDropdown: [],
   orgDropDown: [],
+  createOpportunityModalState: false,
   opportunityMetadata: {
     opportunity_services: [],
     opportunity_stage: [],
@@ -42,12 +44,17 @@ const OpportunityPrimaryReducer = (
         draftState.oppsStages = action.data;
         break;
       }
+      case SET_OPPORTUNITY_VISIBILITY: {
+        draftState.createOpportunityModalState = action.visibility;
+        console.log('draftstate -->', action.visibility);
+        break;
+      }
       // case SAVE_OPPS_STAGE_PROBABILITY: {
       //   draftState.oppsStageProbabilityData = action.data;
       //   break;
       // }
       default:
-        return state;
+        return draftState;
     }
   });
 

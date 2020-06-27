@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect} from 'react';
-import {FlatList, ImageBackground, StyleSheet} from 'react-native';
+import {FlatList, ImageBackground, StyleSheet, View, Text} from 'react-native';
 import Animated, {Easing} from 'react-native-reanimated';
 import {Card, Title, Subheading} from 'react-native-paper';
 import LinearGradient from 'react-native-linear-gradient';
@@ -12,7 +12,15 @@ const profileBG = require('../../../../../../assets/images/opps.png');
 
 const FlatListHeader = props => {
   const [fadeValue] = useState(new Animated.Value(1));
-  const {delay, color1, color2, title, totalAmount, oppAmount} = props;
+  const {
+    delay,
+    color1,
+    color2,
+    title,
+    totalAmount,
+    oppAmount,
+    noOfDeals,
+  } = props;
   useEffect(() => {
     Animated.timing(fadeValue, {
       toValue: 1,
@@ -33,14 +41,15 @@ const FlatListHeader = props => {
           <ImageBackground
             source={profileBG}
             imageStyle={{borderRadius: CARD_BORDER_RADIUS}}
-            style={styles.imageBG}
-          />
-          <Card.Content>
-            <Title>{title}</Title>
-            <Subheading>
-              {totalAmount} | {oppAmount}
-            </Subheading>
-          </Card.Content>
+            style={styles.imageBG}>
+            <Card.Content>
+              <Title>{title}</Title>
+              <Subheading>
+                {totalAmount} | {oppAmount}
+              </Subheading>
+              <Text>{`${noOfDeals}`}</Text>
+            </Card.Content>
+          </ImageBackground>
         </LinearGradient>
       </Card>
     </Animated.View>

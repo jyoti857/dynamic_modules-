@@ -40,6 +40,7 @@ const RFTextInput = props => {
         multiline={multiline}
         maxLength={2000}
         mode="outlined"
+        underlineColor={'transparent'}
       />
       {required && hasError ? (
         <HelperText type="error" visible={hasError}>

@@ -19,7 +19,7 @@ import {compose} from 'redux';
 const CreateIndividual = props => {
   const {
     conexionType,
-    pistine,
+    pristine,
     submitting,
     invalid,
     handleSubmit,
@@ -60,7 +60,7 @@ const CreateIndividual = props => {
           )}
           color="#fff"
           onPress={handleSubmit(onCreateConexion)}
-          disabled={submitting || pistine || invalid}
+          disabled={submitting || pristine || invalid}
         />
       }>
       <IndividualConexionForm />
