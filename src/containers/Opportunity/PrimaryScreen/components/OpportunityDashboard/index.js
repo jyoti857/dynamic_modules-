@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {ScrollView, Text, View, StyleSheet} from 'react-native';
 import {Row, Col} from 'react-native-easy-grid';
 import Lo from 'lodash';
@@ -13,26 +13,34 @@ import {
   setCreateOpportunityModalVisibility,
   setOppQuickViewModalState,
 } from '../../actions';
-import {createOpportunityModalStateSelector} from '../../selectors';
+import {
+  createOpportunityModalStateSelector,
+  oppsListByStageSelector,
+} from '../../selectors';
 import CreateOpportunity from '../CreateOpportunity';
+import OpportunityCard from './DashboardFlatList/OpportunityCard';
+import FlatListRender from './DashboardFlatList/FlatListRender';
 
 const OpportunityDashboard = props => {
   const isFocused = useIsFocused();
   const navigation = useNavigation();
 
   const {
-    oppsListByStage,
     dispatchCreateOpportunityModalState,
     dispatchOppQuickViewModalState,
     modalState,
+    oppsListByStage,
   } = props;
+  // useEffect(() => setInterval(() => {}, 2000));
   const opportunityPress = oppId => {
-    navigation.navigate('OpportunityDetail', {oppKey: oppId});
+    navigation.navigate('OpportunityDetails', {oppKey: oppId});
   };
   const createOpportunityTrigger = modalState1 => {
     dispatchCreateOpportunityModalState(modalState1);
   };
   console.log('modal state Opps --->', modalState);
+  console.log('opps list by stage  --->', oppsListByStage);
+
   // const fetchSelectedServiceValues = () => {
   //   const defaultItem = Lo.find(serviceMetadata, ['Selected', true]);
   //   return defaultItem ? defaultItem.Value : null;
@@ -62,7 +70,7 @@ const OpportunityDashboard = props => {
     const oppsArray = [];
     if (!Lo.isEmpty(oppsListByStage)) {
       oppsListByStage.map((opp, index) => {
-        return oppsArray.push(
+        oppsArray.push(
           <Col>
             <View style={styles.cardHeader}>
               <FlatListHeader
@@ -74,15 +82,20 @@ const OpportunityDashboard = props => {
                 oppAmount={opp.data.WeightedOppAmount}
               />
             </View>
+            <FlatListRender
+              data={opp.data.Opportunities}
+              itemPress={opportunityPress}
+            />
           </Col>,
         );
       });
-      return <Text>Render opps frmo Opportunity Dashboard</Text>;
     }
+    // return <Text>Render opps frmo Opportunity Dashboard</Text>;
+    return oppsArray;
   };
   return (
     <View style={styles.parentView}>
-      <ScrollView>
+      <ScrollView horizontal>
         <Row>{renderOpps()}</Row>
         <CreateOpportunity modalOpen={modalState} />
       </ScrollView>
@@ -108,6 +121,7 @@ const mapStateToProps = ({OpportunityPrimaryReducer}) => {
   console.log('dslds--->', OpportunityPrimaryReducer);
   return {
     modalState: createOpportunityModalStateSelector(OpportunityPrimaryReducer),
+    // oppsListByStage: oppsListByStageSelector(OpportunityPrimaryReducer),
   };
 };
 const mapDispatchToProps = dispatch => ({

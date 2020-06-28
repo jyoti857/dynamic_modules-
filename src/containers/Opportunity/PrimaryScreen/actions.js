@@ -13,6 +13,10 @@ import {
   SET_QUICK_VIEW_MODAL_STATE,
   GET_IND_DD_VALUE,
   SET_NEW_OPPORTUNITY,
+  GET_OPPS_LIST_BY_STAGE,
+  SAVE_OPPS_LIST_BY_STAGE,
+  SET_OPP_QUICK_VIEW_MODALSTATE,
+  FETCH_OPP_DETAIL,
 } from './constants';
 import {Value} from 'react-native-reanimated';
 
@@ -50,6 +54,10 @@ export const saveUserDDList = data => ({
   type: SAVE_USER_DD_LIST,
   data,
 });
+export const getOppsListByStage = boolean => ({
+  type: GET_OPPS_LIST_BY_STAGE,
+  boolean,
+});
 
 export const fecthUserDDList = () => ({
   type: FETCH_USER_DD_LIST,
@@ -75,4 +83,14 @@ export const getIndDDList = indDDValues => ({
 export const setNewOpportunity = value => ({
   type: SET_NEW_OPPORTUNITY,
   value,
+});
+
+export const saveOppsListByStage = value => ({
+  type: SAVE_OPPS_LIST_BY_STAGE,
+  value,
+});
+
+export const getOppDetail = oppId => ({
+  type: FETCH_OPP_DETAIL,
+  oppId,
 });

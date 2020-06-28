@@ -4,6 +4,7 @@ import {
   FETCH_OPPS_STAGE_PROBABILITY,
   FETCH_USER_DD_LIST,
   FETCH_OPPS_STAGES,
+  GET_OPPS_LIST_BY_STAGE,
 } from './constants';
 import config from '../../../config';
 import {METADATA_VARIABLES, ROLE_VARIABLES} from '../constants';
@@ -13,6 +14,7 @@ import {
   saveOppsMetadata,
   saveOppsStageProbability,
   saveOppsStages,
+  saveOppsListByStage,
 } from './actions';
 import {mapOppsByStage} from '../mappers';
 
@@ -85,10 +87,21 @@ function* fetchOppsStagesAPI({showAll}) {
     );
   }
 }
+function* getOppsListByStageAPI({showAll}) {
+  const requestURL = `${config.apiURL}GetOppsListByStages?showAll=${showAll}`;
+  const options = {method: 'GET'};
+  const response = yield call(request, requestURL, options);
+  if (response.success) {
+    console.log('******####', response.data);
+    const mappedStage = mapOppsByStage(response.data);
+    yield put(saveOppsListByStage(mappedStage));
+  }
+}
 
 export default function* OpportunityPrimarySaga() {
   yield takeLatest(FETCH_OPPORTUNITY_METADATA, fetchOppsMetadaAPI);
   yield takeLatest(FETCH_OPPS_STAGE_PROBABILITY, fetchOppsStageProbabilityAPI);
   yield takeLatest(FETCH_USER_DD_LIST, fetchUserDDListAPI);
   yield takeLatest(FETCH_OPPS_STAGES, fetchOppsStagesAPI);
+  yield takeLatest(GET_OPPS_LIST_BY_STAGE, getOppsListByStageAPI);
 }

@@ -42,12 +42,12 @@ const FlatListHeader = props => {
             source={profileBG}
             imageStyle={{borderRadius: CARD_BORDER_RADIUS}}
             style={styles.imageBG}>
-            <Card.Content>
+            <Card.Content style={{margin: 10}}>
               <Title>{title}</Title>
               <Subheading>
                 {totalAmount} | {oppAmount}
               </Subheading>
-              <Text>{`${noOfDeals}`}</Text>
+              <Text>{`${noOfDeals} Deals`}</Text>
             </Card.Content>
           </ImageBackground>
         </LinearGradient>

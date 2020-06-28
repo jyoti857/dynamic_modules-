@@ -5,6 +5,7 @@ import {
   SAVE_OPPS_STAGE_PROBABILITY,
   SAVE_OPPS_STAGES,
   SET_OPPORTUNITY_VISIBILITY,
+  SAVE_OPPS_LIST_BY_STAGE,
 } from './constants';
 export const OpportunityPrimaryInitialState = {
   userDropdown: [],
@@ -21,6 +22,7 @@ export const OpportunityPrimaryInitialState = {
     opportunity_stage: [],
   },
   oppsStages: [],
+  oppsListByStage: [],
 };
 
 const OpportunityPrimaryReducer = (
@@ -47,6 +49,11 @@ const OpportunityPrimaryReducer = (
       case SET_OPPORTUNITY_VISIBILITY: {
         draftState.createOpportunityModalState = action.visibility;
         console.log('draftstate -->', action.visibility);
+        break;
+      }
+      case SAVE_OPPS_LIST_BY_STAGE: {
+        console.log('**** reducer opps list by stage ---> ', action.value);
+        draftState.oppsListByStage = action.value;
         break;
       }
       // case SAVE_OPPS_STAGE_PROBABILITY: {

@@ -8,6 +8,7 @@ import {
   fetchOpportunityMetadata,
   fetchUserDDList,
   fetchOppsStages,
+  getOppsListByStage,
 } from './actions';
 import OpportunityDashboard from './components/OpportunityDashboard';
 
@@ -19,11 +20,15 @@ const PrimaryScreen = props => {
     showAll,
     dispatchOppsStages,
     oppsStages,
+    fetchOppsListByStage,
   } = props;
   useEffect(() => {
     dispatchOppsStages(showAll);
     console.log('-------->');
   }, [dispatchOppsStages, showAll]);
+  useEffect(() => {
+    fetchOppsListByStage(showAll);
+  }, [fetchOppsListByStage, showAll]);
   console.log('opwepe, ', oppsStages);
   return (
     <View style={{flex: 1}}>
@@ -42,6 +47,7 @@ const mapDispatchtoProps = dispatch => ({
   dispatchOpportunityMetaData: () => dispatch(fetchOpportunityMetadata()),
   dispatchUserDDList: () => dispatch(fetchUserDDList()),
   dispatchOppsStages: showAll => dispatch(fetchOppsStages(showAll)),
+  fetchOppsListByStage: showAll => dispatch(getOppsListByStage(showAll)),
 });
 const withConnect = connect(
   mapStateToProps,
