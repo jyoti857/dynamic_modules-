@@ -73,3 +73,10 @@ export const objectBuilder = (objectForm, serviceArr) => ({
   Comments: objectForm.opp_comments ? objectForm.opp_comments : null,
   Service: serviceArr,
 });
+
+export const oppCloseObjectBuilder = objectForm => ({
+  Stage: objectForm.opp_stage,
+  Comment: objectForm.opp_comment,
+  ContractEndDate: objectForm.opp_contract_end_date,
+  RemindMeOn: objectForm.opp_remind_me_onm,
+});
